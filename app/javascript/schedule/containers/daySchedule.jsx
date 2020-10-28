@@ -5,7 +5,7 @@ import TimeBlockList from './timeBlockList';
 const DaySchedule = (props) => {
   const { day } = props;
   return (
-    <div>
+    <div className="day-container">
       <h3>{day}</h3>
       <TimeBlockList />
     </div>
