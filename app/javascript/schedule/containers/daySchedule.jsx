@@ -1,19 +1,13 @@
 import React from 'react';
 
-import TimeBlock from './timeBlockList';
+import TimeBlockList from './timeBlockList';
 
 const DaySchedule = (props) => {
   const { day } = props;
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>{day}</th>
-          </tr>
-        </thead>
-        <TimeBlockList />
-      </table>
+      <h3>{day}</h3>
+      <TimeBlockList />
     </div>
     )
 }

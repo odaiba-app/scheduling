@@ -21,7 +21,7 @@ const WeekSchedule = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="week-container">
       { days.map( (day, idx) => <DaySchedule day={day} key={idx} /> )}
     </div>
     )

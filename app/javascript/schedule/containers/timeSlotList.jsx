@@ -19,8 +19,12 @@ const TimeSlotList = (props) => {
   useEffect(() => {
     setTimeSlots(allotedTimeSlots);
   }, []);
-  return (
 
+  return (
+      <div className="time-container">
+        <h3>Time</h3>
+        { timeSlots.map( (slot, idx) => <TimeSlot time={slot} key={idx} /> ) }
+      </div>
     )
 }
 
