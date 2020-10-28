@@ -18,7 +18,7 @@ puts "Creating users"
 
 params = {}
 params[:username] = 'Liam'
-params[:email] = 'liam@journal.com'
+params[:email] = 'liam@schedule.com'
 params[:password] = 'password'
 params[:difference_from_utc] = 9
 new_user = User.new(params)
@@ -27,7 +27,7 @@ puts "Created user #{new_user.id}"
 
 params = {}
 params[:username] = 'Rui'
-params[:email] = 'Rui@journal.com'
+params[:email] = 'Rui@schedule.com'
 params[:password] = 'password'
 params[:difference_from_utc] = -4
 new_user = User.new(params)
