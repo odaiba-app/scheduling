@@ -132,5 +132,3 @@ time = Time.parse("Oct 30 2020 09:00")
 end
 
 puts "Created Time Blocks"
-
-
