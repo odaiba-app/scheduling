@@ -1,0 +1,35 @@
+.app-container {
+  display: flex;
+}
+
+.time-container {
+  padding: 8px 16px 16px 16px;
+  text-align: center;
+  p {
+    font-size: 12px;
+    margin-bottom: 0px;
+    padding-bottom: 4px
+  }
+}
+
+.week-container {
+  display: flex;
+  padding-top: 8px;
+  padding-right: 16px;
+  justify-content: space-around;
+  width: 100%;
+  text-align: center;
+}
+
+.day-container{
+  width: 14%
+}
+
+.time-block-container {
+  height: 87vh;
+  p {
+    font-size: 12px;
+    margin-bottom: 0px;
+    padding-bottom: 4px
+  }
+}

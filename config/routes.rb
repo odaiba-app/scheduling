@@ -21,7 +21,7 @@ Rails.application.routes.draw do
           get 'sunday'
         end
       end
-      resources :user_availabilities, only: %i[ create delete ]
+      resources :user_availabilities, only: %i[ create destroy ]
     end
   end
 end
