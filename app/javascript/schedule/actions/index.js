@@ -21,7 +21,7 @@ export function createAvailability(id) {
   const promise = fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
-    body: JSON.stringify(body);
+    body: JSON.stringify(body)
   }).then(r => r.json());
 
   return { promise };

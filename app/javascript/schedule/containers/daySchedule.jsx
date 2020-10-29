@@ -7,7 +7,7 @@ const DaySchedule = (props) => {
   return (
     <div className="day-container">
       <h3>{day}</h3>
-      <TimeBlockList />
+      <TimeBlockList day={day} />
     </div>
     )
 }
