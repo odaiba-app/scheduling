@@ -1,4 +1,4 @@
 class UserAvailability < ApplicationRecord
   belongs_to :user
-  belongs_to :timeblock
+  belongs_to :time_block
 end
