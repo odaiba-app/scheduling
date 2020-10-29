@@ -132,3 +132,20 @@ time = Time.parse("Oct 30 2020 09:00")
 end
 
 puts "Created Time Blocks"
+
+
+puts "Creating user availability blocks"
+all_time_blocks = TimeBlock.all.to_a
+all_time_blocks[5..15].each do |time_block|
+  user_availability = UserAvailability.new(user: user, time_block: time_block)
+  user_availability.save
+  puts "Created user_availability #{user_availability.id}"
+end
+
+all_time_blocks[10..20].each do |time_block|
+  user_availability = UserAvailability.new(user: user2, time_block: time_block)
+  user_availability.save
+  puts "Created user_availability #{user_availability.id}"
+end
+puts "User availabilities created"
+
