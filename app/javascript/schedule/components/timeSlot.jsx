@@ -4,8 +4,8 @@ const TimeSlot = (props) => {
 
   const { time } = props;
   return (
-    <div>
-      {time}
+    <div className="time-slot">
+      <p>{time}</p>
     </div>
     )
 }

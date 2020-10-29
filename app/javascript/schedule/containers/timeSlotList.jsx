@@ -6,18 +6,27 @@ const TimeSlotList = (props) => {
 
   const [timeSlots, setTimeSlots] = useState([]);
 
-  const allotedTimeSlots = [
-    '6:00',
-    '6:30',
-    '7:00',
-    '7:30',
-    '8:00',
-    '8:30',
-    '9:00'
-  ]
+  const allotedTimeSlots = () => {
+    const slots = [];
+    let h = 6;
+    times (18) (() => {
+      slots.push(`${h}:00`);
+      slots.push(`${h}:30`);
+      h += 1;
+    })
+    return slots
+  }
+
+
+  const times = x => f => {
+    if (x > 0) {
+      f()
+      times (x - 1) (f)
+    }
+  }
 
   useEffect(() => {
-    setTimeSlots(allotedTimeSlots);
+    setTimeSlots(allotedTimeSlots());
   }, []);
 
   return (

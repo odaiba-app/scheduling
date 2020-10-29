@@ -1,1 +1,40 @@
 const BASE_URL = '/api/v1';
+
+export function fetchDay(day) {
+  const url = `${BASE_URL}/time_blocks/${day}`;
+  const promise = fetch(url, { credentials: "same-origin"}).then(r => r.json());
+
+  return { promise };
+}
+
+export function fetchBlock(id) {
+  const url = `${BASE_URL}/time_blocks/${id}`;
+  const promise = fetch(url, { credentials: "same-origin"}).then(r => r.json());
+
+  return { promise };
+}
+
+export function createAvailability(id) {
+  const url = `${BASE_URL}/user_availabilities`;
+  const body = { "user_availability": { "time_block_id": id } }
+
+  const promise = fetch(url, {
+    method: 'POST',
+    credentials: 'same-origin',
+    body: JSON.stringify(body);
+  }).then(r => r.json());
+
+  return { promise };
+}
+
+export function deleteAvailability(blockId, availId) {
+  const url = `${BASE_URL}/user_availabilities/${availId}`;
+  const body = { "user_availability": { "time_block_id": blockId } }
+
+  const promise = fetch(url, {
+    method: 'DELETE',
+    credentials: 'same-origin'
+  }).then(r => r.json());
+
+  return { promise };
+}
