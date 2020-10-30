@@ -34,6 +34,15 @@ new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
+params = {}
+params[:username] = 'utc'
+params[:email] = 'utc@schedule.com'
+params[:password] = 'password'
+params[:difference_from_utc] = 0
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
 puts "Users created!"
 
 puts "Creating Skills"
@@ -122,7 +131,7 @@ puts "Created User Skills"
 puts "Creating Time Blocks"
 
 # this will be UTC time from Japan
-time = Time.parse("Oct 30 2020 09:00")
+time = Time.parse("Nov 1 2020 00:00")
 
 336.times do
   new_time_block = TimeBlock.new(time: time)

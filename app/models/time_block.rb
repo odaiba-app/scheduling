@@ -4,10 +4,10 @@ class TimeBlock < ApplicationRecord
 
   validates :time, presence: true, uniqueness: true
 
-  def self.configure_time
+  def self.configure_time(user)
     all.map {|slot| {
       id: slot.id,
-      time: slot.time + (User.find(8).difference_from_utc.hour)
+      time: slot.time + (user.difference_from_utc.hour)
       }
     }
   end

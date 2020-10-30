@@ -42,6 +42,6 @@ class Api::V1::TimeBlocksController < Api::V1::BaseController
   private
 
   def configure_user_time
-    @blocks = TimeBlock.configure_time
+    @blocks = TimeBlock.configure_time(current_user)
   end
 end
