@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :time_blocks, only: %i[ index show ] do
+      resources :time_blocks, only: :show do
         collection do
           get 'monday'
           get 'tuesday'

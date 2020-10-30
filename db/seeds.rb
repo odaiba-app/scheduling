@@ -124,7 +124,7 @@ puts "Creating Time Blocks"
 # this will be UTC time from Japan
 time = Time.parse("Oct 30 2020 09:00")
 
-97.times do
+336.times do
   new_time_block = TimeBlock.new(time: time)
   new_time_block.save
   puts "Created time block #{new_time_block.id}"

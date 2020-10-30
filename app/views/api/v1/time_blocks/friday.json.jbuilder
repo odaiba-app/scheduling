@@ -1,3 +1,4 @@
-json.array! @time_blocks do |block|
-  json.time block.time
+json.array! @timeblocks do |block|
+  json.id block.id
+  json.time block.time.to_s(:long_ordinal)
 end

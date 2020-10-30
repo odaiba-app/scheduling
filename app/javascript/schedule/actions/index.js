@@ -20,6 +20,10 @@ export function createAvailability(id) {
 
   const promise = fetch(url, {
     method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     credentials: 'same-origin',
     body: JSON.stringify(body)
   }).then(r => r.json());
@@ -27,14 +31,12 @@ export function createAvailability(id) {
   return { promise };
 }
 
-export function deleteAvailability(blockId, availId) {
+export function deleteAvailability(availId) {
   const url = `${BASE_URL}/user_availabilities/${availId}`;
-  const body = { "user_availability": { "time_block_id": blockId } }
+  // const body = { "user_availability": { "time_block_id": blockId } }
 
   const promise = fetch(url, {
     method: 'DELETE',
     credentials: 'same-origin'
-  }).then(r => r.json());
-
-  return { promise };
+  })
 }
