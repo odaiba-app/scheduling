@@ -25,9 +25,11 @@ const TimeBlock = (props) => {
 
   const handleShow = () => { setShow(true); }
 
+  const className = blockInfo.user_availabilities.length > 0 ? "time-block active" : "time-block"
+
   return (
     <>
-      <div className="time-block" id={block.id} onClick={handleShow}>
+      <div className={className}id={block.id} onClick={handleShow}>
         <p>{block.time}</p>
       </div>
 
