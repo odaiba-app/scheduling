@@ -12,8 +12,24 @@
 }
 
 .user-skills {
-  li {
+  a {
+    text-decoration: none;
+    margin: 0px 4px;
+    color: rgb(200, 200, 200);
     cursor: pointer;
-    margin: 0px 4px
+    &:after {
+      display:block;
+      content: '';
+      border-bottom: solid 3px #F7BE29;
+      transform: scaleX(0);
+      transition: transform 250ms ease-in-out;
+    }
+    &:hover:after {
+      transform: scaleX(1);
+    }
+  }
+
+  a.active {
+    color: #F7BE29;
   }
 }
