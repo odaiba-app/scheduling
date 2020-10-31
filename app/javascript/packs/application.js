@@ -34,4 +34,10 @@ import "../schedule";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  const skills = document.querySelectorAll('.user-skills a');
+  skills.forEach(skill => {
+    skill.addEventListener('click', () => {
+      skill.classList.toggle('active');
+    })
+  });
 });
