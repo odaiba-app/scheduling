@@ -27,6 +27,9 @@ const ToolBar = (props) => {
     availableBlockIds.forEach( id => {
       createAvailability(id);
     })
+    setShow(false);
+    const AvailableButton = document.getElementById("available-button");
+    AvailableButton.classList.add('hidden-available-button');
   }
 
   const icon = show ? faChevronLeft : faChevronRight;
