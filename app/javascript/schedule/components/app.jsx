@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { fetchUser } from '../actions/index';
 
 import WeekSchedule from '../containers/weekSchedule';
-import TimeSlotList from '../containers/timeSlotList';
+import ToolBar from '../containers/toolBar';
 
 export default class App extends Component {
   constructor(props) {
@@ -11,7 +11,9 @@ export default class App extends Component {
     this.state = {
       userId: '',
       username: '',
-      userSkillIds: []
+      userSkillIds: [],
+      makeAvailable: false,
+      availableBlockIds: []
     }
     fetchUser().promise.then(r => {
       this.setState({
@@ -26,14 +28,31 @@ export default class App extends Component {
     });
   }
 
+  updateUi = () => {
+    this.setState({
+      makeAvailable: !this.state.makeAvailable,
+      availableBlockIds: []
+    });
+    const selectedBlocks = document.querySelectorAll(".highlight");
+    selectedBlocks.forEach( block => {
+      block.classList.remove('highlight');
+    })
+  }
+
+  selectBlock = id => {
+    this.setState({ availableBlockIds: [...this.state.availableBlockIds, id]})
+  }
+
   render() {
 
-    const { userId, username, userSkillIds } = this.state;
+    console.log(this.state.availableBlockIds);
+
+    const { userId, username, userSkillIds, makeAvailable } = this.state;
 
     return (
       <div className="app-container">
-        <TimeSlotList />
-        <WeekSchedule userId={userId} username={username} userSkillIds={userSkillIds} />
+        <ToolBar updateUi={this.updateUi} />
+        <WeekSchedule userId={userId} username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
       </div>
     );
   }

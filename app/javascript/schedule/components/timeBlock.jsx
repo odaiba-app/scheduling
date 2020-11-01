@@ -8,7 +8,7 @@ import { fetchBlock, createAvailability } from '../actions/index';
 
 const TimeBlock = (props) => {
 
-  const { block, day, userId, username, userSkillIds } = props;
+  const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock } = props;
 
   const [show, setShow] = useState(false);
   const [blockInfo, setBlockInfo] = useState({user_availabilities: []});
@@ -38,13 +38,18 @@ const TimeBlock = (props) => {
 
   const handleShow = () => { setShow(true); }
 
-  const blockClassName = users.includes(username) ? "time-block active" : "time-block"
+  const handleHighlight = () => {
+    const timeBlock = document.getElementById(`${block.id}`);
+    timeBlock.classList.toggle('highlight');
+    selectBlock(timeBlock.id);
+  }
 
-  console.log(skills);
-  console.log(userSkillIds);
+  const blockClassName = users.includes(username) ? "time-block active" : "time-block";
+  const click = makeAvailable ? handleHighlight : handleShow;
+
   return (
     <>
-      <div className={blockClassName} id={block.id} onClick={handleShow}>
+      <div className={blockClassName} id={block.id} onClick={click}>
         <p>{block.time}</p>
         <div className="block-icons">
           { skills.map((skill) => userSkillIds.includes(skill.skill_id) ? <div className="active">{parse(skill.icon)}</div> : parse(skill.icon) ) }

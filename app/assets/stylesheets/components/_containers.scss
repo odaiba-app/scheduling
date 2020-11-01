@@ -3,7 +3,7 @@
 }
 
 .time-container {
-  padding: 8px 16px 16px 16px;
+  padding: 8px 16px 16px 4px;
   text-align: center;
   p {
     font-size: 12px;
@@ -21,6 +21,16 @@
   text-align: center;
 }
 
+.week-container.editable {
+  color: rgb(150, 150, 150);
+  .time-block {
+    border-top: 1px solid rgb(150, 150, 150);
+    &:last-child {
+      border-bottom: 1px solid rgb(150, 150, 150);
+    }
+  }
+}
+
 .day-container{
   width: 14%
 }
@@ -31,5 +41,46 @@
     font-size: 12px;
     margin-bottom: 0px;
     padding-bottom: 4px
+  }
+}
+
+.toolbar-container {
+  display: flex;
+  height: inherit;
+  align-items: center;
+  .toolbar {
+    height: 100%;
+    background-color: #F7BE29;
+    width: 12px;
+    transition: width 2s ease-in-out, color 2s ease-in-out;
+    color: #F7BE29;
+    text-align: center;
+    h3 {
+      padding: 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      visibility: hidden;
+    }
+  }
+  .toolbar-button {
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 8px;
+    height: 100%;
+    cursor: pointer;
+    svg {
+      background-color: #F7BE29;
+      border-radius: 50%;
+      height: 16px;
+      width: 16px;
+    }
+  }
+  .toolbar.active {
+    width: 400px;
+    color: #444;
+    h3 {
+      visibility: visible;
+    }
   }
 }
