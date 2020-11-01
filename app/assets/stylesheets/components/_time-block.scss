@@ -15,6 +15,17 @@
       font-size: 12px;
     }
   }
+  .block-icons {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    height: inherit;
+    justify-content: space-around;
+    color: rgb(150, 150, 150);
+    .active {
+      color: #F7BE29;
+    }
+  }
 }
 
 .availability-icon{
@@ -22,5 +33,9 @@
 }
 
 .time-block.active {
-  background-color: #D8BFD8;
+  background-color: #A4ABFC;
+}
+
+.time-block.highlight {
+  background-color: #F7BE29;
 }

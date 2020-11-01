@@ -14,6 +14,14 @@ export function fetchBlock(id) {
   return { promise };
 }
 
+export function fetchUser() {
+  const url = `${BASE_URL}/logged`;
+  const promise = fetch(url, { credentials: "same-origin"}).then(r => r.json());
+
+  return { promise };
+}
+
+
 export function createAvailability(id) {
   const url = `${BASE_URL}/user_availabilities`;
   const body = { "user_availability": { "time_block_id": id } }

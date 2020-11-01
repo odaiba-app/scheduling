@@ -47,27 +47,27 @@ puts "Users created!"
 
 puts "Creating Skills"
 
-new_skill = Skill.new(name: 'Rails')
+new_skill = Skill.new(name: 'Rails', icon: "<i class='fas fa-magic'></i>")
 new_skill.save
 puts "Created skill #{new_skill.id}"
 
-new_skill = Skill.new(name: 'React')
+new_skill = Skill.new(name: 'React', icon: "<i class='fab fa-react'></i>")
 new_skill.save
 puts "Created skill #{new_skill.id}"
 
-new_skill = Skill.new(name: 'HTML&CSS')
+new_skill = Skill.new(name: 'HTML&CSS', icon: "<i class='fab fa-html5'></i>")
 new_skill.save
 puts "Created skill #{new_skill.id}"
 
-new_skill = Skill.new(name: 'Marketing')
+new_skill = Skill.new(name: 'Marketing', icon: "<i class='fas fa-poll'></i>")
 new_skill.save
 puts "Created skill #{new_skill.id}"
 
-new_skill = Skill.new(name: 'Biz Dev')
+new_skill = Skill.new(name: 'Biz Dev', icon: "<i class='fas fa-briefcase'></i>")
 new_skill.save
 puts "Created skill #{new_skill.id}"
 
-new_skill = Skill.new(name: 'Design')
+new_skill = Skill.new(name: 'Design', icon: "<i class='fas fa-icons'></i>")
 new_skill.save
 puts "Created skill #{new_skill.id}"
 
@@ -77,54 +77,16 @@ puts "Creating User Skills"
 
 user = User.find_by(username: 'Liam')
 user2 = User.find_by(username: 'Rui')
+user3 = User.find_by(username: 'utc')
 
-new_user_skill = UserSkill.new(
-  user: user,
-  skill: Skill.find_by(name: 'Rails'),
-  experience: 'Middle'
-  )
-new_user_skill.save
-puts "Created user skill #{new_user_skill.id}"
+skills = Skill.all
+skills.each {|skill| UserSkill.create(skill: skill, user: user)}
+skills.each {|skill| UserSkill.create(skill: skill, user: user2)}
+skills.each {|skill| UserSkill.create(skill: skill, user: user3)}
 
-new_user_skill = UserSkill.new(
-  user: user,
-  skill: Skill.find_by(name: 'React'),
-  experience: 'A little'
-  )
-new_user_skill.save
-puts "Created user skill #{new_user_skill.id}"
+user_skills = UserSkill.all
 
-new_user_skill = UserSkill.new(
-  user: user,
-  skill: Skill.find_by(name: 'HTML&CSS'),
-  experience: 'Middle'
-  )
-new_user_skill.save
-puts "Created user skill #{new_user_skill.id}"
-
-new_user_skill = UserSkill.new(
-  user: user2,
-  skill: Skill.find_by(name: 'Rails'),
-  experience: 'None'
-  )
-new_user_skill.save
-puts "Created user skill #{new_user_skill.id}"
-
-new_user_skill = UserSkill.new(
-  user: user2,
-  skill: Skill.find_by(name: 'Marketing'),
-  experience: 'A lot'
-  )
-new_user_skill.save
-puts "Created user skill #{new_user_skill.id}"
-
-new_user_skill = UserSkill.new(
-  user: user2,
-  skill: Skill.find_by(name: 'HTML&CSS'),
-  experience: 'A little'
-  )
-new_user_skill.save
-puts "Created user skill #{new_user_skill.id}"
+user_skills.each {|us| puts "Created user skill #{us.id}"}
 
 puts "Created User Skills"
 
@@ -143,18 +105,18 @@ end
 puts "Created Time Blocks"
 
 
-puts "Creating user availability blocks"
-all_time_blocks = TimeBlock.all.to_a
-all_time_blocks[5..15].each do |time_block|
-  user_availability = UserAvailability.new(user: user, time_block: time_block)
-  user_availability.save
-  puts "Created user_availability #{user_availability.id}"
-end
+# puts "Creating user availability blocks"
+# all_time_blocks = TimeBlock.all.to_a
+# all_time_blocks[5..15].each do |time_block|
+#   user_availability = UserAvailability.new(user: user, time_block: time_block)
+#   user_availability.save
+#   puts "Created user_availability #{user_availability.id}"
+# end
 
-all_time_blocks[10..20].each do |time_block|
-  user_availability = UserAvailability.new(user: user2, time_block: time_block)
-  user_availability.save
-  puts "Created user_availability #{user_availability.id}"
-end
-puts "User availabilities created"
+# all_time_blocks[10..20].each do |time_block|
+#   user_availability = UserAvailability.new(user: user2, time_block: time_block)
+#   user_availability.save
+#   puts "Created user_availability #{user_availability.id}"
+# end
+# puts "User availabilities created"
 
