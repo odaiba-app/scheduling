@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import parse from 'html-react-parser';
 
 import AvailableUsersList from '../containers/availableUsersList';
 import { fetchBlock, createAvailability } from '../actions/index';
 
 const TimeBlock = (props) => {
 
-  const { block, day } = props;
+  const { block, day, userId, username } = props;
 
   const [show, setShow] = useState(false);
   const [blockInfo, setBlockInfo] = useState({user_availabilities: []});
+  const [users, setUsers] = useState([]);
+  const [icons, setIcons] = useState([]);
 
-  // possible way to get block info
   const allowedBlockInfo = fetchBlock(block.id);
 
   useEffect(() => {
     allowedBlockInfo.promise.then(r => setBlockInfo(r));
+    const user_array = []
+    const icon_array = []
+    blockInfo.user_availabilities.forEach((user) => {
+      user_array.push(user.username);
+      user.skills.forEach((skill) => {
+        icon_array.push(skill.icon);
+      })
+    })
+    const unique_icons = [...new Set(icon_array)];
+    setUsers(user_array);
+    setIcons(unique_icons);
   }, [blockInfo.user_availabilities.length]);
 
   const handleSubmit = () => { createAvailability(block.id).promise.then(r => setBlockInfo(r)); }
@@ -25,12 +38,14 @@ const TimeBlock = (props) => {
 
   const handleShow = () => { setShow(true); }
 
-  const className = blockInfo.user_availabilities.length > 0 ? "time-block active" : "time-block"
-
+  const className = users.includes(username) ? "time-block active" : "time-block"
   return (
     <>
-      <div className={className}id={block.id} onClick={handleShow}>
+      <div className={className} id={block.id} onClick={handleShow}>
         <p>{block.time}</p>
+        <div className="block-icons">
+          { icons.map((icon) => parse(icon) ) }
+        </div>
       </div>
 
       <Modal show={show} onHide={handleClose} animation={false}>

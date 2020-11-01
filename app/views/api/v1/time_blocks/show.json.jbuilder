@@ -5,6 +5,6 @@ json.user_availabilities @time_block.user_availabilities do |availability|
   json.username availability.user.username
   json.skills availability.user.user_skills.where(active: true) do |user_skill|
     json.skill user_skill.skill.name
-    json.experience user_skill.experience
+    json.icon user_skill.skill.icon
   end
 end

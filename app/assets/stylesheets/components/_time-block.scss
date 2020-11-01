@@ -15,6 +15,13 @@
       font-size: 12px;
     }
   }
+  .block-icons {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    height: inherit;
+    justify-content: space-around;
+  }
 }
 
 .availability-icon{

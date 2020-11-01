@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  get '/dashboard' => "pages#home", :as => :user_root
+  get '/dashboard' => "pages#home", as: :user_root
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :user_skills, only: :update
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
           get 'sunday'
         end
       end
+      get '/logged' => "users#logged", as: :users_logged
       resources :user_availabilities, only: %i[ create destroy ]
     end
   end
