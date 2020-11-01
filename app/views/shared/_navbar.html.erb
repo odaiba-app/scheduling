@@ -14,14 +14,14 @@
         <ul class="user-skills navbar-nav mr-auto px-5">
           <% current_user.user_skills.each do |skill| %>
             <% if skill.active %>
-              <%= link_to user_skill_path(skill), method: :patch, class: 'active' do %>
+              <%= link_to user_skill_path(skill), method: :patch, remote: true, class: 'active' do %>
                 <li class="px-3 text-center">
                   <%= skill.skill.icon.html_safe %>
                   <p class="mb-1"><%= skill.skill.name %></p>
                 </li>
               <% end %>
             <% else %>
-              <%= link_to user_skill_path(skill), method: :patch do %>
+              <%= link_to user_skill_path(skill), method: :patch, remote: true do %>
                 <li class="px-3 text-center">
                   <%= skill.skill.icon.html_safe %>
                   <p class="mb-1"><%= skill.skill.name %></p>

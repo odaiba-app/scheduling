@@ -37,21 +37,24 @@ export default class App extends Component {
     selectedBlocks.forEach( block => {
       block.classList.remove('highlight');
     })
+    const AvailableButton = document.getElementById("available-button");
+    if (this.state.makeAvailable) AvailableButton.classList.add('hidden-available-button')
   }
 
   selectBlock = id => {
     this.setState({ availableBlockIds: [...this.state.availableBlockIds, id]})
+    const selectedBlocks = document.querySelectorAll(".highlight");
+    const AvailableButton = document.getElementById("available-button");
+    if (selectedBlocks.length > 0) AvailableButton.classList.remove('hidden-available-button')
   }
 
   render() {
 
-    console.log(this.state.availableBlockIds);
-
-    const { userId, username, userSkillIds, makeAvailable } = this.state;
+    const { userId, username, userSkillIds, makeAvailable, availableBlockIds } = this.state;
 
     return (
       <div className="app-container">
-        <ToolBar updateUi={this.updateUi} />
+        <ToolBar updateUi={this.updateUi} availableBlockIds={availableBlockIds} />
         <WeekSchedule userId={userId} username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
       </div>
     );
