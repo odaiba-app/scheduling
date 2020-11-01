@@ -4,7 +4,7 @@ import DaySchedule from './daySchedule'
 
 const WeekSchedule = (props) => {
 
-  const { userId, username } = props;
+  const { userId, username, userSkillIds } = props;
   const [days, setDays] = useState([]);
 
   const weekDays = [
@@ -23,7 +23,7 @@ const WeekSchedule = (props) => {
 
   return (
     <div className="week-container">
-      { days.map( (day, idx) => <DaySchedule day={day} key={idx} userId={userId} username={username} /> )}
+      { days.map( (day, idx) => <DaySchedule day={day} key={idx} userId={userId} username={username} userSkillIds={userSkillIds} /> )}
     </div>
     )
 }

@@ -8,28 +8,28 @@ import { fetchBlock, createAvailability } from '../actions/index';
 
 const TimeBlock = (props) => {
 
-  const { block, day, userId, username } = props;
+  const { block, day, userId, username, userSkillIds } = props;
 
   const [show, setShow] = useState(false);
   const [blockInfo, setBlockInfo] = useState({user_availabilities: []});
   const [users, setUsers] = useState([]);
-  const [icons, setIcons] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   const allowedBlockInfo = fetchBlock(block.id);
 
   useEffect(() => {
     allowedBlockInfo.promise.then(r => setBlockInfo(r));
     const user_array = []
-    const icon_array = []
+    const skill_array = []
     blockInfo.user_availabilities.forEach((user) => {
       user_array.push(user.username);
       user.skills.forEach((skill) => {
-        icon_array.push(skill.icon);
+        skill_array.push(skill);
       })
     })
-    const unique_icons = [...new Set(icon_array)];
+    const unique_icons = [...new Set(skill_array)];
     setUsers(user_array);
-    setIcons(unique_icons);
+    setSkills(unique_icons);
   }, [blockInfo.user_availabilities.length]);
 
   const handleSubmit = () => { createAvailability(block.id).promise.then(r => setBlockInfo(r)); }
@@ -38,13 +38,16 @@ const TimeBlock = (props) => {
 
   const handleShow = () => { setShow(true); }
 
-  const className = users.includes(username) ? "time-block active" : "time-block"
+  const blockClassName = users.includes(username) ? "time-block active" : "time-block"
+
+  console.log(skills);
+  console.log(userSkillIds);
   return (
     <>
-      <div className={className} id={block.id} onClick={handleShow}>
+      <div className={blockClassName} id={block.id} onClick={handleShow}>
         <p>{block.time}</p>
         <div className="block-icons">
-          { icons.map((icon) => parse(icon) ) }
+          { skills.map((skill) => userSkillIds.includes(skill.skill_id) ? <div className="active">{parse(skill.icon)}</div> : parse(skill.icon) ) }
         </div>
       </div>
 

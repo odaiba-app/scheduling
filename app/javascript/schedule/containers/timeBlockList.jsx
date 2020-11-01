@@ -6,7 +6,7 @@ import TimeBlock from '../components/timeBlock';
 
 const TimeBlockList = (props) => {
 
-  const { day, userId, username } = props;
+  const { day, userId, username, userSkillIds } = props;
 
   const [timeBlocks, setTimeBlocks] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false)
@@ -23,7 +23,7 @@ const TimeBlockList = (props) => {
 
   return (
       <div className="time-block-container">
-        { isLoaded ? timeBlocks.map( (block, idx) => <TimeBlock block={block} day={day} key={idx} userId={userId} username={username} /> ) : '' }
+        { isLoaded ? timeBlocks.map( (block, idx) => <TimeBlock block={block} day={day} key={idx} userId={userId} username={username} userSkillIds={userSkillIds} /> ) : '' }
       </div>
     )
 }
