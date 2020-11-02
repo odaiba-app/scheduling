@@ -8,7 +8,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const AvailableUser = (props) => {
 
-  const { availability, username } = props;
+  const { availability, username, block } = props;
 
   const [user, setUser] = useState({});
 
@@ -19,9 +19,9 @@ const AvailableUser = (props) => {
   const handleClick = () => {
     deleteAvailability(user.availability_id);
     setUser({})
+    const timeBlock = document.getElementById(`${block.id}`);
+    timeBlock.classList.remove('active');
   }
-
-  console.log(user);
 
   return (
     <div className="available-user d-flex justify-content-between">

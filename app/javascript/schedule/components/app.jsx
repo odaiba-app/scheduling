@@ -37,6 +37,7 @@ export default class App extends Component {
     const selectedBlocks = document.querySelectorAll(".highlight");
     selectedBlocks.forEach( block => {
       block.classList.remove('highlight');
+      block.classList.add('active');
     })
     const AvailableButton = document.getElementById("available-button");
     if (this.state.makeAvailable) AvailableButton.classList.add('hidden-available-button')

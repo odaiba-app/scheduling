@@ -38,7 +38,10 @@ const TimeBlock = (props) => {
 
   const handleClose = () => { setShow(false); }
 
-  const handleShow = () => { setShow(true); }
+  const handleShow = () => {
+    organiseBlockState();
+    setShow(true);
+  }
 
   const handleHighlight = () => {
     const timeBlock = document.getElementById(`${block.id}`);
@@ -64,7 +67,7 @@ const TimeBlock = (props) => {
           <Modal.Title className="m-0" >{block.time}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AvailableUsersList users={blockInfo} username={username} key={blockInfo.user_availabilities.length} />
+          <AvailableUsersList users={blockInfo} block={block} username={username} key={blockInfo.user_availabilities.length} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

@@ -8,7 +8,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const AvailableUsersList = (props) => {
 
-  const { users, username } = props;
+  const { users, username, block } = props;
 
   const [availabilities, setAvailabilities] = useState([]);
 
@@ -18,7 +18,7 @@ const AvailableUsersList = (props) => {
 
   return (
     <>
-      { availabilities.map( (user, idx) => <AvailableUser availability={user} username={username} key={idx} /> )}
+      { availabilities.map( (user, idx) => <AvailableUser availability={user} block={block} username={username} key={idx} /> )}
     </>
     )
 }
