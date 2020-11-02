@@ -22,7 +22,7 @@ const TimeBlockList = (props) => {
   }, []);
 
   return (
-      <div className="time-block-container">
+      <div className="time-block-container" id={day}>
         { isLoaded ? timeBlocks.map( (block, idx) => <TimeBlock block={block} day={day} key={idx} userId={userId} username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={selectBlock} /> ) : '' }
       </div>
     )

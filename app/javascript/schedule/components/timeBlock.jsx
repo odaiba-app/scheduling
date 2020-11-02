@@ -18,6 +18,10 @@ const TimeBlock = (props) => {
   const allowedBlockInfo = fetchBlock(block.id);
 
   useEffect(() => {
+    organiseBlockState();
+  }, [blockInfo.user_availabilities.length]);
+
+  const organiseBlockState = () => {
     allowedBlockInfo.promise.then(r => setBlockInfo(r));
     const user_array = []
     const skill_array = []
@@ -30,9 +34,9 @@ const TimeBlock = (props) => {
     const unique_icons = [...new Set(skill_array)];
     setUsers(user_array);
     setSkills(unique_icons);
-  }, [blockInfo.user_availabilities.length]);
+  }
 
-  const handleSubmit = () => { createAvailability(block.id).promise.then(r => setBlockInfo(r)); }
+  // const handleSubmit = () => { createAvailability(block.id).promise.then(r => setBlockInfo(r)); }
 
   const handleClose = () => { setShow(false); }
 
@@ -41,7 +45,8 @@ const TimeBlock = (props) => {
   const handleHighlight = () => {
     const timeBlock = document.getElementById(`${block.id}`);
     timeBlock.classList.toggle('highlight');
-    selectBlock(timeBlock.id);
+    const action = timeBlock.classList.contains('highlight') ? 'add' : 'remove';
+    selectBlock(timeBlock.id, action);
   }
 
   const blockClassName = users.includes(username) ? "time-block active" : "time-block";
@@ -66,9 +71,6 @@ const TimeBlock = (props) => {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Make Available
           </Button>
         </Modal.Footer>
       </Modal>

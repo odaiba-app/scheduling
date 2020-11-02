@@ -28,8 +28,7 @@ const ToolBar = (props) => {
       createAvailability(id);
     })
     setShow(false);
-    const AvailableButton = document.getElementById("available-button");
-    AvailableButton.classList.add('hidden-available-button');
+    updateUi();
   }
 
   const icon = show ? faChevronLeft : faChevronRight;
@@ -39,7 +38,7 @@ const ToolBar = (props) => {
   return (
       <div className="toolbar-container">
         <div className={className}>
-          <h3>Set Your Availabilities</h3>
+          <h4>Set Your Availabilities</h4>
           <div className="hidden-available-button btn btn-secondary" id="available-button" onClick={handleSubmissions}>
             Make Available
           </div>

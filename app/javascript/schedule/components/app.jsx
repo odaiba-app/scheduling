@@ -41,16 +41,25 @@ export default class App extends Component {
     if (this.state.makeAvailable) AvailableButton.classList.add('hidden-available-button')
   }
 
-  selectBlock = id => {
-    this.setState({ availableBlockIds: [...this.state.availableBlockIds, id]})
+  selectBlock = (id, action) => {
+    if (action === 'add') {
+      this.setState({ availableBlockIds: [...this.state.availableBlockIds, id]})
+    } else {
+      const array = [...this.state.availableBlockIds];
+      const idx = array.indexOf(id);
+      array.splice(idx, 1);
+      this.setState({availableBlockIds: array})
+    }
     const selectedBlocks = document.querySelectorAll(".highlight");
     const AvailableButton = document.getElementById("available-button");
-    if (selectedBlocks.length > 0) AvailableButton.classList.remove('hidden-available-button')
+    selectedBlocks.length > 0 ? AvailableButton.classList.remove('hidden-available-button') : AvailableButton.classList.add('hidden-available-button')
   }
 
   render() {
 
     const { userId, username, userSkillIds, makeAvailable, availableBlockIds } = this.state;
+
+    console.log(availableBlockIds);
 
     return (
       <div className="app-container">

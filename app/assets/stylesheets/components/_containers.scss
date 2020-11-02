@@ -55,7 +55,7 @@
     transition: width 2s ease-in-out, color 2s ease-in-out;
     color: #F7BE29;
     text-align: center;
-    h3 {
+    h4 {
       padding: 16px;
       overflow: hidden;
       white-space: nowrap;
@@ -80,9 +80,9 @@
     }
   }
   .toolbar.active {
-    width: 400px;
+    width: 16vw;
     color: #444;
-    h3 {
+    h4 {
       visibility: visible;
     }
 
