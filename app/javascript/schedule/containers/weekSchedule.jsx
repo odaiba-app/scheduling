@@ -24,6 +24,7 @@ const WeekSchedule = (props) => {
 
   const className = makeAvailable ? "week-container editable" : "week-container"
 
+  console.log('rendering');
   return (
     <div className={className}>
       <TimeSlotList />

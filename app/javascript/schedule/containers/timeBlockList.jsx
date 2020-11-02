@@ -11,14 +11,11 @@ const TimeBlockList = (props) => {
   const [timeBlocks, setTimeBlocks] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false)
 
-  // possible way of getting blocks for each column
-  const timeBlocksRange = fetchDay(day.toLowerCase());
-
-  // const timeBlocksRange = [...Array(36).keys()]
-
   useEffect(() => {
-    timeBlocksRange.promise.then(r => setTimeBlocks(r));
-    setIsLoaded(true);
+    if (!isLoaded) {
+      fetchDay(day.toLowerCase()).promise.then(r => setTimeBlocks(r));
+      setIsLoaded(true);
+    }
   }, []);
 
   return (

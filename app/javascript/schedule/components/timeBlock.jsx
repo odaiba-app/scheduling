@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import parse from 'html-react-parser';
 
+import BlockSkill from './blockSkill';
 import AvailableUsersList from '../containers/availableUsersList';
 import { fetchBlock, createAvailability } from '../actions/index';
 
@@ -15,14 +15,12 @@ const TimeBlock = (props) => {
   const [users, setUsers] = useState([]);
   const [skills, setSkills] = useState([]);
 
-  const allowedBlockInfo = fetchBlock(block.id);
-
   useEffect(() => {
     organiseBlockState();
   }, [blockInfo.user_availabilities.length]);
 
   const organiseBlockState = () => {
-    allowedBlockInfo.promise.then(r => setBlockInfo(r));
+    fetchBlock(block.id).promise.then(r => setBlockInfo(r));
     const user_array = []
     const skill_array = []
     blockInfo.user_availabilities.forEach((user) => {
@@ -57,7 +55,7 @@ const TimeBlock = (props) => {
       <div className={blockClassName} id={block.id} onClick={click}>
         <p>{block.time}</p>
         <div className="block-icons">
-          { skills.map((skill) => userSkillIds.includes(skill.skill_id) ? <div className="active">{parse(skill.icon)}</div> : parse(skill.icon) ) }
+          { skills.map((skill, idx) =>  <BlockSkill skill={skill} key={idx} userSkillIds={userSkillIds} /> ) }
         </div>
       </div>
 

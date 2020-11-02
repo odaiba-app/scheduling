@@ -58,13 +58,13 @@ export default class App extends Component {
   render() {
 
     const { userId, username, userSkillIds, makeAvailable, availableBlockIds } = this.state;
-
-    console.log(availableBlockIds);
+    console.log('render from app');
 
     return (
       <div className="app-container">
         <ToolBar updateUi={this.updateUi} availableBlockIds={availableBlockIds} />
-        <WeekSchedule userId={userId} username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
+        <WeekSchedule userId={userId}
+         username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
       </div>
     );
   }
