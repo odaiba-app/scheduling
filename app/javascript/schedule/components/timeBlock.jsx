@@ -64,7 +64,7 @@ const TimeBlock = (props) => {
           <Modal.Title className="m-0" >{block.time}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AvailableUsersList users={blockInfo} key={blockInfo.user_availabilities.length} />
+          <AvailableUsersList users={blockInfo} username={username} key={blockInfo.user_availabilities.length} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

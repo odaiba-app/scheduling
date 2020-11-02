@@ -9,8 +9,6 @@ const BlockSkill = (props) => {
 
   const className = filterSkillIds.includes(skill.skill_id) ? "active" : "";
 
-  console.log(filterSkillIds);
-
   return (
     <div className={className}>
       {parse(skill.icon)}

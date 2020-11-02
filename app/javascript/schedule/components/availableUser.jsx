@@ -8,7 +8,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const AvailableUser = (props) => {
 
-  const { availability } = props;
+  const { availability, username } = props;
 
   const [user, setUser] = useState({});
 
@@ -21,11 +21,13 @@ const AvailableUser = (props) => {
     setUser({})
   }
 
+  console.log(user);
+
   return (
     <div className="available-user d-flex justify-content-between">
       <p>{user.username}</p>
       {user.skills ? user.skills.map( (skill, idx) => <UserSkill skill={skill} key={idx} />) : ''}
-      {user.username ? <FontAwesomeIcon className="availability-icon" icon={faTimesCircle} onClick={handleClick} /> : '' }
+      {user.username === username  ? <FontAwesomeIcon className="availability-icon" icon={faTimesCircle} onClick={handleClick} /> : '' }
     </div>
     )
 }
