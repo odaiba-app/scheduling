@@ -8,7 +8,7 @@ import { fetchBlock, createAvailability } from '../actions/index';
 
 const TimeBlock = (props) => {
 
-  const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock } = props;
+  const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIds } = props;
 
   const [show, setShow] = useState(false);
   const [blockInfo, setBlockInfo] = useState({user_availabilities: []});
@@ -55,7 +55,7 @@ const TimeBlock = (props) => {
       <div className={blockClassName} id={block.id} onClick={click}>
         <p>{block.time}</p>
         <div className="block-icons">
-          { skills.map((skill, idx) =>  <BlockSkill skill={skill} key={idx} userSkillIds={userSkillIds} /> ) }
+          { skills.map((skill, idx) =>  <BlockSkill skill={skill} key={idx} filterSkillIds={filterSkillIds} userSkillIds={userSkillIds} /> ) }
         </div>
       </div>
 

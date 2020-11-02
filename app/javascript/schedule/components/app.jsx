@@ -12,6 +12,7 @@ export default class App extends Component {
       userId: '',
       username: '',
       userSkillIds: [],
+      filterSkillIds: [],
       makeAvailable: false,
       availableBlockIds: []
     }
@@ -55,15 +56,26 @@ export default class App extends Component {
     selectedBlocks.length > 0 ? AvailableButton.classList.remove('hidden-available-button') : AvailableButton.classList.add('hidden-available-button')
   }
 
+  updateFilter = (id, action) => {
+    console.log(action);
+    if (action === 'add') {
+      this.setState({ filterSkillIds: [...this.state.filterSkillIds, id] })
+    } else {
+      const array = [...this.state.filterSkillIds];
+      const idx = array.indexOf(id);
+      array.splice(idx, 1);
+      this.setState({filterSkillIds: array})
+    }
+  }
+
   render() {
 
-    const { userId, username, userSkillIds, makeAvailable, availableBlockIds } = this.state;
-    console.log('render from app');
+    const { userId, username, userSkillIds, makeAvailable, availableBlockIds, filterSkillIds } = this.state;
 
     return (
       <div className="app-container">
-        <ToolBar updateUi={this.updateUi} availableBlockIds={availableBlockIds} />
-        <WeekSchedule userId={userId} username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
+        <ToolBar updateUi={this.updateUi} availableBlockIds={availableBlockIds} updateFilter={this.updateFilter} />
+        <WeekSchedule userId={userId} username={username} filterSkillIds={filterSkillIds} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
       </div>
     );
   }

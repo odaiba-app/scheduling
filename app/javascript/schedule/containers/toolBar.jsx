@@ -10,7 +10,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const ToolBar = (props) => {
 
-  const { updateUi, availableBlockIds } = props;
+  const { updateUi, availableBlockIds, updateFilter } = props;
 
   const [ show, setShow ] = useState(false);
 
@@ -52,7 +52,7 @@ const ToolBar = (props) => {
             </div>
           </div>
           <div className="skills">
-            {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} />)}
+            {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} updateFilter={updateFilter} />)}
           </div>
         </div>
         <div className="toolbar-button" onClick={click}>

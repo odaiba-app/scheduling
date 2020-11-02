@@ -5,7 +5,7 @@ import TimeSlotList from '../containers/timeSlotList';
 
 const WeekSchedule = (props) => {
 
-  const { userId, username, userSkillIds, makeAvailable, selectBlock } = props;
+  const { userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIds } = props;
   const [days, setDays] = useState([]);
 
   const weekDays = [
@@ -28,7 +28,7 @@ const WeekSchedule = (props) => {
   return (
     <div className={className}>
       <TimeSlotList />
-      { days.map( (day, idx) => <DaySchedule day={day} key={idx} userId={userId} username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={selectBlock} /> )}
+      { days.map( (day, idx) => <DaySchedule day={day} key={idx} userId={userId} username={username} filterSkillIds={filterSkillIds} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={selectBlock} /> )}
     </div>
     )
 }

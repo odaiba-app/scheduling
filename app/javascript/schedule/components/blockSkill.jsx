@@ -3,9 +3,13 @@ import parse from 'html-react-parser';
 
 const BlockSkill = (props) => {
 
-  const { skill, userSkillIds } = props;
+  const { skill, userSkillIds, filterSkillIds } = props;
 
-  const className = userSkillIds.includes(skill.skill_id) ? "active" : "";
+  // const className = userSkillIds.includes(skill.skill_id) ? "active" : "";
+
+  const className = filterSkillIds.includes(skill.skill_id) ? "active" : "";
+
+  console.log(filterSkillIds);
 
   return (
     <div className={className}>
