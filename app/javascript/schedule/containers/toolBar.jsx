@@ -35,6 +35,11 @@ const ToolBar = (props) => {
       createAvailability(id);
     })
     setShow(false);
+    const selectedBlocks = document.querySelectorAll(".highlight");
+    selectedBlocks.forEach( block => {
+      block.classList.remove('highlight');
+      block.classList.add('active');
+    })
     updateUi();
   }
 
