@@ -63,8 +63,7 @@ export default class App extends Component {
     return (
       <div className="app-container">
         <ToolBar updateUi={this.updateUi} availableBlockIds={availableBlockIds} />
-        <WeekSchedule userId={userId}
-         username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
+        <WeekSchedule userId={userId} username={username} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
       </div>
     );
   }

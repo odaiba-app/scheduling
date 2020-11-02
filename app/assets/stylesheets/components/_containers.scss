@@ -29,6 +29,14 @@
       border-bottom: 1px solid rgb(150, 150, 150);
     }
   }
+  .time-block.active {
+    background-color: #d5d9fe;
+  }
+  .block-icons {
+    .active {
+      color: #FAEF73;
+    }
+  }
 }
 
 .day-container{
@@ -49,6 +57,9 @@
   height: inherit;
   align-items: center;
   .toolbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     height: 100%;
     background-color: #F7BE29;
     width: 12px;
@@ -56,13 +67,18 @@
     color: #F7BE29;
     text-align: center;
     h4 {
-      padding: 16px;
+      padding: 64px 16px 16px 16px;
       overflow: hidden;
       white-space: nowrap;
       visibility: hidden;
     }
+    .skill {
+      font-size: 1px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
     .hidden-available-button {
-      display: none;
+      visibility: hidden;
     }
   }
   .toolbar-button {
@@ -85,6 +101,30 @@
     h4 {
       visibility: visible;
     }
-
+    .skills {
+      padding-bottom: 64px;
+      margin: auto;
+      text-align: center;
+      .skill {
+        color: rgba(160, 160, 160, 0.4);
+        padding-bottom: 8px;
+        cursor: pointer;
+        font-size: 48px;
+        width: inherit;
+        &:after {
+          display:block;
+          content: '';
+          border-bottom: solid 3px #A4ABFC;
+          transform: scaleX(0);
+          transition: transform 250ms ease-in-out;
+        }
+        &:hover:after {
+          transform: scaleX(1);
+        }
+      }
+      .skill.active {
+        color: #A4ABFC;
+      }
+    }
   }
 }

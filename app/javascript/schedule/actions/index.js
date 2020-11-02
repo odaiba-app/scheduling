@@ -21,6 +21,13 @@ export function fetchUser() {
   return { promise };
 }
 
+export function fetchSkills() {
+  const url = `${BASE_URL}/skills`;
+  const promise = fetch(url, { credentials: "same-origin"}).then(r => r.json());
+
+  return { promise };
+}
+
 
 export function createAvailability(id) {
   const url = `${BASE_URL}/user_availabilities`;

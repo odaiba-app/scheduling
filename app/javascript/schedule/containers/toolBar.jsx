@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { createAvailability } from '../actions/index';
+import { createAvailability, fetchSkills } from '../actions/index';
+import ToolbarSkill from '../components/toolbarSkill';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +13,12 @@ const ToolBar = (props) => {
   const { updateUi, availableBlockIds } = props;
 
   const [ show, setShow ] = useState(false);
+
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    fetchSkills().promise.then(r => setSkills(r))
+  }, [])
 
   const handleOpen = () => {
     setShow(true);
@@ -38,9 +45,14 @@ const ToolBar = (props) => {
   return (
       <div className="toolbar-container">
         <div className={className}>
-          <h4>Set Your Availabilities</h4>
-          <div className="hidden-available-button btn btn-secondary" id="available-button" onClick={handleSubmissions}>
-            Make Available
+          <div className="header">
+            <h4>Set Your Availabilities</h4>
+            <div className="hidden-available-button btn btn-secondary" id="available-button" onClick={handleSubmissions}>
+              Make Available
+            </div>
+          </div>
+          <div className="skills">
+            {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} />)}
           </div>
         </div>
         <div className="toolbar-button" onClick={click}>
