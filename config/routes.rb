@@ -13,17 +13,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :skills, only: :index
-      resources :time_blocks, only: :show do
-        collection do
-          get 'monday'
-          get 'tuesday'
-          get 'wednesday'
-          get 'thursday'
-          get 'friday'
-          get 'saturday'
-          get 'sunday'
-        end
-      end
+      resources :time_blocks, only: :show
+      get 'day/:day', to: 'time_blocks#day', as: :day
       get '/logged' => "users#logged", as: :users_logged
       resources :user_availabilities, only: %i[ create destroy ]
     end

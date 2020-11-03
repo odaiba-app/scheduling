@@ -7,7 +7,8 @@ class TimeBlock < ApplicationRecord
   def self.configure_time(user)
     all.map {|slot| {
       id: slot.id,
-      time: slot.time + (user.difference_from_utc.hour)
+      time: slot.time + (user.difference_from_utc.hour),
+      user_availabilities: slot.user_availabilities
       }
     }
   end
