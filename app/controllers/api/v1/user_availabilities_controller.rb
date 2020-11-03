@@ -3,7 +3,7 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
     @user_availability = UserAvailability.new(availability_params)
     @user_availability.user = current_user
     if @user_availability.save
-      redirect_to api_v1_time_block_path(@user_availability.time_block)
+      render json: @user_availability
     else
       render_error
     end

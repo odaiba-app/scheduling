@@ -1,7 +1,7 @@
 const BASE_URL = '/api/v1';
 
 export function fetchDay(day) {
-  const url = `${BASE_URL}/time_blocks/${day}`;
+  const url = `${BASE_URL}/day/${day}`;
   const promise = fetch(url, { credentials: "same-origin"}).then(r => r.json());
 
   return { promise };

@@ -11,16 +11,16 @@ const TimeBlock = (props) => {
   const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIds } = props;
 
   const [show, setShow] = useState(false);
-  const [blockInfo, setBlockInfo] = useState({user_availabilities: []});
+  const [initialLoad, setInitialLoad] = useState(false);
+  const [blockInfo, setBlockInfo] = useState(block);
   const [users, setUsers] = useState([]);
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     organiseBlockState();
-  }, [blockInfo.user_availabilities.length]);
+  }, [blockInfo]);
 
   const organiseBlockState = () => {
-    fetchBlock(block.id).promise.then(r => setBlockInfo(r));
     const user_array = []
     const skill_array = []
     blockInfo.user_availabilities.forEach((user) => {
@@ -32,6 +32,7 @@ const TimeBlock = (props) => {
     const unique_icons = [...new Set(skill_array)];
     setUsers(user_array);
     setSkills(unique_icons);
+    setInitialLoad(true);
   }
 
   // const handleSubmit = () => { createAvailability(block.id).promise.then(r => setBlockInfo(r)); }
@@ -39,7 +40,7 @@ const TimeBlock = (props) => {
   const handleClose = () => { setShow(false); }
 
   const handleShow = () => {
-    organiseBlockState();
+    fetchBlock(block.id).promise.then(r => setBlockInfo(r))
     setShow(true);
   }
 
