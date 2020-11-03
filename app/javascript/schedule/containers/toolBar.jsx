@@ -57,6 +57,7 @@ const ToolBar = (props) => {
             </div>
           </div>
           <div className="skills">
+            <h4>Filter</h4>
             {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} updateFilter={updateFilter} />)}
           </div>
         </div>

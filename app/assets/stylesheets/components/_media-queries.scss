@@ -1,0 +1,38 @@
+// For MBP 13
+@media (min-width: 992px) and (max-width: 1300px) {
+  .app-container {
+    h4 {
+      font-size: 16px;
+    }
+    h3 {
+      font-size: 16px;
+    }
+    .toolbar-container {
+      .toolbar.active {
+        .skill {
+          font-size: 32px;
+        }
+      }
+    }
+    .time-container {
+      p {
+        font-size: 9.5px;
+      }
+    }
+    .week-container {
+      .time-block {
+        height: 19px;
+        .block-icons {
+          font-size: 12px;
+        }
+      }
+    }
+    .week-container.editable {
+      .time-block {
+        p {
+          font-size: 9px;
+        }
+      }
+    }
+  }
+}
