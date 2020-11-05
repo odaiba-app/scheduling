@@ -5,6 +5,9 @@
   p {
     display: none;
   }
+  .multiple-availabilities-icon {
+    display: none;
+  }
   &:last-child {
     border-bottom: 1px solid rgb(50, 50, 50);
   }
@@ -36,6 +39,17 @@
 
 .time-block.active {
   background-color: #A4ABFC;
+  .multiple-availabilities-icon {
+    color: #F7BE29;
+    display: initial;
+    position: relative;
+    right: -40%;
+  }
+  &:hover {
+    .multiple-availabilities-icon {
+      display: none;
+    }
+  }
 }
 
 .time-block.highlight {

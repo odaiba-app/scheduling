@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import BlockSkill from './blockSkill';
 import AvailableUsersList from '../containers/availableUsersList';
@@ -57,6 +59,7 @@ const TimeBlock = (props) => {
   return (
     <>
       <div className={blockClassName} id={block.id} onClick={click}>
+        { users.length > 1 ? <FontAwesomeIcon className="multiple-availabilities-icon" size="1x" icon={faUsers} /> : '' }
         <p>{block.time}</p>
         <div className="block-icons">
           { skills.map((skill, idx) =>  <BlockSkill skill={skill} key={idx} filterSkillIds={filterSkillIds} userSkillIds={userSkillIds} /> ) }
