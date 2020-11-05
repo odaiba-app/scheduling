@@ -12,7 +12,9 @@ const ToolbarSkill = (props) => {
     // const block = document.getElementById(`${skill.id}`)
     // const action = block.classList.contains('active') ? 'add' : 'remove';
     const action = active ? "remove" : "add";
-    updateFilter(skill.id, action);
+    // updateFilter(skill.id, action);
+    updateFilter(skill.icon, action);
+
   }
 
   const className = active ? "skill active" : "skill"

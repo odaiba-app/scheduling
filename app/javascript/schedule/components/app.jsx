@@ -12,7 +12,7 @@ export default class App extends Component {
       userId: '',
       username: '',
       userSkillIds: [],
-      filterSkillIds: [],
+      filterSkillIcons: [],
       makeAvailable: false,
       availableBlockIds: []
     }
@@ -57,25 +57,24 @@ export default class App extends Component {
   }
 
   updateFilter = (id, action) => {
-    console.log(action);
     if (action === 'add') {
-      this.setState({ filterSkillIds: [...this.state.filterSkillIds, id] })
+      this.setState({ filterSkillIcons: [...this.state.filterSkillIcons, id] })
     } else {
-      const array = [...this.state.filterSkillIds];
+      const array = [...this.state.filterSkillIcons];
       const idx = array.indexOf(id);
       array.splice(idx, 1);
-      this.setState({filterSkillIds: array})
+      this.setState({filterSkillIcons: array})
     }
   }
 
   render() {
 
-    const { userId, username, userSkillIds, makeAvailable, availableBlockIds, filterSkillIds } = this.state;
+    const { userId, username, userSkillIds, makeAvailable, availableBlockIds, filterSkillIcons } = this.state;
 
     return (
       <div className="app-container">
         <ToolBar updateUi={this.updateUi} availableBlockIds={availableBlockIds} updateFilter={this.updateFilter} />
-        <WeekSchedule userId={userId} username={username} filterSkillIds={filterSkillIds} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
+        <WeekSchedule userId={userId} username={username} filterSkillIcons={filterSkillIcons} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
       </div>
     );
   }

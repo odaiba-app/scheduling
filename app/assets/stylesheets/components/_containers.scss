@@ -31,6 +31,9 @@
   }
   .time-block.active {
     background-color: #d5d9fe;
+    .multiple-availabilities-icon {
+      display: none;
+    }
   }
   .block-icons {
     .active {

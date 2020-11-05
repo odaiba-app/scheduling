@@ -10,13 +10,13 @@ import { fetchBlock, createAvailability } from '../actions/index';
 
 const TimeBlock = (props) => {
 
-  const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIds } = props;
+  const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIcons } = props;
 
   const [show, setShow] = useState(false);
   const [initialLoad, setInitialLoad] = useState(false);
   const [blockInfo, setBlockInfo] = useState(block);
   const [users, setUsers] = useState([]);
-  const [skills, setSkills] = useState([]);
+  const [icons, setIcons] = useState([]);
 
   useEffect(() => {
     organiseBlockState();
@@ -28,12 +28,12 @@ const TimeBlock = (props) => {
     blockInfo.user_availabilities.forEach((user) => {
       user_array.push(user.username);
       user.skills.forEach((skill) => {
-        skill_array.push(skill);
+        skill_array.push(skill.icon);
       })
     })
     const unique_icons = [...new Set(skill_array)];
     setUsers(user_array);
-    setSkills(unique_icons);
+    setIcons(unique_icons);
     setInitialLoad(true);
   }
 
@@ -56,13 +56,16 @@ const TimeBlock = (props) => {
   const blockClassName = users.includes(username) ? "time-block active" : "time-block";
   const click = makeAvailable ? handleHighlight : handleShow;
 
+  console.log(icons)
+  console.log(filterSkillIcons)
+
   return (
     <>
       <div className={blockClassName} id={block.id} onClick={click}>
         { users.length > 1 ? <FontAwesomeIcon className="multiple-availabilities-icon" size="1x" icon={faUsers} /> : '' }
         <p>{block.time}</p>
         <div className="block-icons">
-          { skills.map((skill, idx) =>  <BlockSkill skill={skill} key={idx} filterSkillIds={filterSkillIds} userSkillIds={userSkillIds} /> ) }
+          { icons.map((skill, idx) =>  <BlockSkill icon={skill} key={idx} filterSkillIcons={filterSkillIcons} /> ) }
         </div>
       </div>
 
