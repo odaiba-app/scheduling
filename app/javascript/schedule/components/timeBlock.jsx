@@ -56,9 +56,6 @@ const TimeBlock = (props) => {
   const blockClassName = users.includes(username) ? "time-block active" : "time-block";
   const click = makeAvailable ? handleHighlight : handleShow;
 
-  console.log(icons)
-  console.log(filterSkillIcons)
-
   return (
     <>
       <div className={blockClassName} id={block.id} onClick={click}>
