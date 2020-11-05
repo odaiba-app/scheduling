@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_many :skills, through: :user_skills
 
   validates :username, :difference_from_utc, presence: true
+
+  def self.find_available
+    includes(:user_availabilities).select { |user| user if user.user_availabilities.count > 0 }.count
+  end
 end

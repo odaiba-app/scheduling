@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :skills, only: :index
       resources :time_blocks, only: :show
       get 'day/:day', to: 'time_blocks#day', as: :day
-      get '/logged' => "users#logged", as: :users_logged
+      get '/logged', to: "users#logged", as: :users_logged
       resources :user_availabilities, only: %i[ create destroy ]
     end
   end
