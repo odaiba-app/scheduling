@@ -48,7 +48,6 @@ const TimeBlock = (props) => {
 
   const handleHighlight = () => {
     const timeBlock = document.getElementById(`${block.id}`);
-    console.log(timeBlock);
     let active = false;
     if ( users.includes(username) ) {
       timeBlock.classList.toggle('active');
@@ -57,7 +56,6 @@ const TimeBlock = (props) => {
     timeBlock.classList.toggle('highlight');
     const action = timeBlock.classList.contains('highlight') ? 'add' : 'remove';
     selectBlock(timeBlock.id, action, active);
-    console.log(active);
   }
 
   const blockClassName = users.includes(username) ? "time-block active" : "time-block";
