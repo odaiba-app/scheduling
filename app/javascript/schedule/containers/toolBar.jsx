@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { createAvailability, fetchSkills } from '../actions/index';
+import { createAvailability, fetchSkills, deleteAvailabilityFromTimeBlock } from '../actions/index';
 import ToolbarSkill from '../components/toolbarSkill';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +10,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const ToolBar = (props) => {
 
-  const { updateUi, availableBlockIds, updateFilter } = props;
+  const { updateUi, availableBlockIds, updateFilter, nonAvailableBlockIds } = props;
 
   const [ show, setShow ] = useState(false);
 
@@ -31,15 +31,23 @@ const ToolBar = (props) => {
   }
 
   const handleSubmissions = () => {
-    availableBlockIds.forEach( id => {
-      createAvailability(id);
-    })
-    setShow(false);
     const selectedBlocks = document.querySelectorAll(".highlight");
-    selectedBlocks.forEach( block => {
-      block.classList.remove('highlight');
-      block.classList.add('active');
-    })
+    if (availableBlockIds.length > 0 ) {
+      availableBlockIds.forEach( id => { createAvailability(id); })
+      selectedBlocks.forEach( block => {
+        block.classList.remove('highlight');
+        block.classList.add('active');
+      })
+    }
+    if (nonAvailableBlockIds.length > 0 ) {
+      nonAvailableBlockIds.forEach( id => { deleteAvailabilityFromTimeBlock(id); })
+      selectedBlocks.forEach( block => {
+        block.classList.remove('highlight');
+        block.classList.remove('active');
+      })
+    }
+    setShow(false);
+
     updateUi();
   }
 
@@ -55,6 +63,9 @@ const ToolBar = (props) => {
               <h4>Set Your Availabilities</h4>
               <div className="hidden-available-button btn btn-secondary" id="available-button" onClick={handleSubmissions}>
                 Make Available
+              </div>
+              <div className="hidden-available-button btn btn-secondary mt-3" id="remove-available-button" onClick={handleSubmissions}>
+                Remove Availability
               </div>
             </div>
             <div className="skills">

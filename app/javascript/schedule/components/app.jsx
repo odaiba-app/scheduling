@@ -14,7 +14,8 @@ export default class App extends Component {
       userSkillIds: [],
       filterSkillIcons: [],
       makeAvailable: false,
-      availableBlockIds: []
+      availableBlockIds: [],
+      nonAvailableBlockIds: []
     }
     fetchUser().promise.then(r => {
       this.setState({
@@ -32,17 +33,32 @@ export default class App extends Component {
   updateUi = () => {
     this.setState({
       makeAvailable: !this.state.makeAvailable,
-      availableBlockIds: []
+      availableBlockIds: [],
+      nonAvailableBlockIds: []
     });
     const selectedBlocks = document.querySelectorAll(".highlight");
     selectedBlocks.forEach( block => {
       block.classList.remove('highlight');
     })
-    const AvailableButton = document.getElementById("available-button");
-    if (this.state.makeAvailable) AvailableButton.classList.add('hidden-available-button')
+    const availableButton = document.getElementById("available-button");
+    const removeAvailableButton = document.getElementById("remove-available-button");
+    if (this.state.makeAvailable) {
+      availableButton.classList.add('hidden-available-button');
+      removeAvailableButton.classList.add('hidden-available-button');
+    }
   }
 
-  selectBlock = (id, action) => {
+  selectBlock = (id, action, active) => {
+    active ? this.nonAvailableBlocks(id, action) : this.availableBlocks(id, action);
+    const selectedBlocks = document.querySelectorAll(".highlight");
+    const availableButton = document.getElementById("available-button");
+    const removeAvailableButton = document.getElementById("remove-available-button");
+    selectedBlocks.length > 0 ? availableButton.classList.remove('hidden-available-button') : availableButton.classList.add('hidden-available-button');
+    selectedBlocks.length > 0 ? removeAvailableButton.classList.remove('hidden-available-button') : removeAvailableButton.classList.add('hidden-available-button');
+
+  }
+
+  availableBlocks = (id, action) => {
     if (action === 'add') {
       this.setState({ availableBlockIds: [...this.state.availableBlockIds, id]})
     } else {
@@ -51,9 +67,17 @@ export default class App extends Component {
       array.splice(idx, 1);
       this.setState({availableBlockIds: array})
     }
-    const selectedBlocks = document.querySelectorAll(".highlight");
-    const AvailableButton = document.getElementById("available-button");
-    selectedBlocks.length > 0 ? AvailableButton.classList.remove('hidden-available-button') : AvailableButton.classList.add('hidden-available-button')
+  }
+
+  nonAvailableBlocks = (id, action) => {
+    if (action === 'add') {
+      this.setState({ nonAvailableBlockIds: [...this.state.nonAvailableBlockIds, id]})
+    } else {
+      const array = [...this.state.nonAvailableBlockIds];
+      const idx = array.indexOf(id);
+      array.splice(idx, 1);
+      this.setState({nonAvailableBlockIds: array})
+    }
   }
 
   updateFilter = (id, action) => {
@@ -69,11 +93,11 @@ export default class App extends Component {
 
   render() {
 
-    const { userId, username, userSkillIds, makeAvailable, availableBlockIds, filterSkillIcons } = this.state;
+    const { userId, username, userSkillIds, makeAvailable, availableBlockIds, filterSkillIcons, nonAvailableBlockIds } = this.state;
 
     return (
       <div className="app-container">
-        <ToolBar updateUi={this.updateUi} availableBlockIds={availableBlockIds} updateFilter={this.updateFilter} />
+        <ToolBar updateUi={this.updateUi} nonAvailableBlockIds={nonAvailableBlockIds} availableBlockIds={availableBlockIds} updateFilter={this.updateFilter} />
         <WeekSchedule userId={userId} username={username} filterSkillIcons={filterSkillIcons} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
       </div>
     );

@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :skills, only: :index
-      resources :time_blocks, only: :show
+      resources :time_blocks, only: :show do
+        member do
+          delete 'remove_user_availability'
+        end
+      end
       get 'day/:day', to: 'time_blocks#day', as: :day
       get '/logged', to: "users#logged", as: :users_logged
       resources :user_availabilities, only: %i[ create destroy ]

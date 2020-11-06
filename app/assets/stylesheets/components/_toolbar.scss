@@ -56,11 +56,13 @@
   .skills {
     padding-bottom: 64px;
     margin: auto;
+    width: 60%;
     text-align: center;
     .skill {
       color: rgba(160, 160, 160, 0.4);
       padding-bottom: 8px;
       cursor: pointer;
+      margin: auto;
       font-size: 48px;
       width: inherit;
       &:after {

@@ -55,3 +55,13 @@ export function deleteAvailability(availId) {
     credentials: 'same-origin'
   })
 }
+
+export function deleteAvailabilityFromTimeBlock(id) {
+  const url = `${BASE_URL}/time_blocks/${id}/remove_user_availability`;
+  // const body = { "user_availability": { "time_block_id": blockId } }
+
+  const promise = fetch(url, {
+    method: 'DELETE',
+    credentials: 'same-origin'
+  })
+}
