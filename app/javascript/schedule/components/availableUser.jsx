@@ -25,9 +25,15 @@ const AvailableUser = (props) => {
 
   return (
     <div className="available-user d-flex justify-content-between">
-      <p>{user.username}</p>
-      {user.skills ? user.skills.map( (skill, idx) => <UserSkill skill={skill} key={idx} />) : ''}
-      {user.username === username  ? <FontAwesomeIcon className="availability-icon" icon={faTimesCircle} onClick={handleClick} /> : '' }
+      <div className="availability-username col-3">
+        <p>{user.username}</p>
+      </div>
+      <div className="user-skills d-flex justify-content-between col-6">
+        {user.skills ? user.skills.map( (skill, idx) => <UserSkill skill={skill} key={idx} />) : ''}
+      </div>
+      <div className="user-cancel-button text-right col-3">
+        {user.username === username  ? <FontAwesomeIcon className="availability-icon" icon={faTimesCircle} onClick={handleClick} /> : '' }
+      </div>
     </div>
     )
 }

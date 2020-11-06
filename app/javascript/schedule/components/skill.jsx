@@ -8,7 +8,7 @@ const UserSkill = (props) => {
   const { skill } = props;
 
   return (
-    <div className="skill d-flex justify-content-between">
+    <div className="skill">
       <p>{parse(skill.icon)}</p>
     </div>
     )
