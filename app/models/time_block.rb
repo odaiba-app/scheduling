@@ -5,10 +5,9 @@ class TimeBlock < ApplicationRecord
   validates :time, presence: true, uniqueness: true
 
   def self.configure_time(user)
-    # Time.zone = current_user.time_zone
     all.map {|slot| {
       id: slot.id,
-      time: slot.time.in_time_zone,
+      time: slot.time.in_time_zone(user.time_zone),
       user_availabilities: slot.user_availabilities
       }
     }
