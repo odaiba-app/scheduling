@@ -20,7 +20,7 @@ params = {}
 params[:username] = 'Liam'
 params[:email] = 'liam@schedule.com'
 params[:password] = 'password'
-params[:time_zome] = 'Tokyo'
+params[:time_zone] = 'Tokyo'
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
