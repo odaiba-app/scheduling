@@ -1,10 +1,12 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="logo-and-count d-flex align-items-center">
     <%=  image_tag "odaiba-logo.png", class: 'avatar' %>
-    <div class="availability-count pl-5 d-flex align-items-center">
-      <i class="fas fa-users"></i>
-      <p class="mb-0 pl-3"><%= User.find_available %> / <%= User.all.count %></p>
-    </div>
+    <% if user_signed_in? %>
+      <div class="availability-count pl-5 d-flex align-items-center">
+        <i class="fas fa-users"></i>
+        <p class="mb-0 pl-3"><%= User.find_available %> / <%= User.all.count %></p>
+      </div>
+    <% end %>
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
