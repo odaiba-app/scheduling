@@ -50,21 +50,22 @@ const ToolBar = (props) => {
   return (
       <div className="toolbar-container">
         <div className={className}>
-          <div className="header">
-            <h4>Set Your Availabilities</h4>
-            <div className="hidden-available-button btn btn-secondary" id="available-button" onClick={handleSubmissions}>
-              Make Available
+          <div className="toolbar-contents">
+            <div className="header">
+              <h4>Set Your Availabilities</h4>
+              <div className="hidden-available-button btn btn-secondary" id="available-button" onClick={handleSubmissions}>
+                Make Available
+              </div>
             </div>
-          </div>
-          <div className="skills">
-            <h4>Filter</h4>
-            {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} updateFilter={updateFilter} />)}
+            <div className="skills">
+              <h4>Filter</h4>
+              {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} updateFilter={updateFilter} />)}
+            </div>
           </div>
         </div>
         <div className="toolbar-button" onClick={click}>
-          <FontAwesomeIcon icon={icon} />
+          <FontAwesomeIcon icon={icon} size="2x" />
         </div>
-
       </div>
     )
 }
