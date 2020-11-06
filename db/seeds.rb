@@ -20,7 +20,7 @@ params = {}
 params[:username] = 'Liam'
 params[:email] = 'liam@schedule.com'
 params[:password] = 'password'
-params[:difference_from_utc] = 9
+params[:time_zome] = 'Tokyo'
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -29,7 +29,7 @@ params = {}
 params[:username] = 'Rui'
 params[:email] = 'Rui@schedule.com'
 params[:password] = 'password'
-params[:difference_from_utc] = -4
+params[:time_zone] = 'Eastern Time (US & Canada)'
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -38,7 +38,6 @@ params = {}
 params[:username] = 'utc'
 params[:email] = 'utc@schedule.com'
 params[:password] = 'password'
-params[:difference_from_utc] = 0
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -93,7 +92,7 @@ puts "Created User Skills"
 puts "Creating Time Blocks"
 
 # this will be UTC time from Japan
-time = Time.parse("Nov 1 2020 00:00")
+time = Time.parse("Nov 7 2020 00:00")
 
 336.times do
   new_time_block = TimeBlock.new(time: time)

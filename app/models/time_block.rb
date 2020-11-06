@@ -1,13 +1,14 @@
 class TimeBlock < ApplicationRecord
-  has_many :user_availabilities
-  has_many :users, through: :user_availabilities
+  has_many :user_availabilities, dependent: :destroy
+  has_many :users, through: :user_availabilities, dependent: :destroy
 
   validates :time, presence: true, uniqueness: true
 
   def self.configure_time(user)
+    # Time.zone = current_user.time_zone
     all.map {|slot| {
       id: slot.id,
-      time: slot.time + (user.difference_from_utc.hour),
+      time: slot.time.in_time_zone,
       user_availabilities: slot.user_availabilities
       }
     }
