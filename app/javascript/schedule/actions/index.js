@@ -79,5 +79,7 @@ export function updateUserSkill(id) {
   const promise = fetch(url, {
     method: 'PATCH',
     credentials: 'same-origin'
-  })
+  }).then(r => r.json());
+
+  return { promise };
 }
