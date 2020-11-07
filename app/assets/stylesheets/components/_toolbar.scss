@@ -66,9 +66,12 @@
       color: rgba(160, 160, 160, 0.4);
       padding-bottom: 8px;
       cursor: pointer;
-      margin: auto;
       font-size: 48px;
       width: inherit;
+      p {
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
       &:after {
         display:block;
         content: '';

@@ -26,6 +26,7 @@ const ToolbarSkill = (props) => {
   return (
     <div className={className} onClick={handleClick} id={skill.id}>
       {parse(userSkill.skill.skill_icon)}
+      <p>{userSkill.skill.skill_name}</p>
     </div>
     )
 }
