@@ -13,7 +13,7 @@ const TimeBlock = (props) => {
   const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIcons } = props;
 
   const [show, setShow] = useState(false);
-  const [initialLoad, setInitialLoad] = useState(false);
+  // const [initialLoad, setInitialLoad] = useState(false);
   const [blockInfo, setBlockInfo] = useState(block);
   const [users, setUsers] = useState([]);
   const [icons, setIcons] = useState([]);
@@ -34,16 +34,15 @@ const TimeBlock = (props) => {
     const unique_icons = [...new Set(skill_array)];
     setUsers(user_array);
     setIcons(unique_icons);
-    setInitialLoad(true);
   }
-
-  // const handleSubmit = () => { createAvailability(block.id).promise.then(r => setBlockInfo(r)); }
 
   const handleClose = () => { setShow(false); }
 
   const handleShow = () => {
-    fetchBlock(block.id).promise.then(r => setBlockInfo(r))
-    setShow(true);
+    fetchBlock(block.id).promise.then(r => {
+      setBlockInfo(r)
+      setShow(true);
+    });
   }
 
   const handleHighlight = () => {
