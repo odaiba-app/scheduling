@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { fetchUser } from '../actions/index';
 
+import Filter from './filter';
 import WeekSchedule from '../containers/weekSchedule';
 import ToolBar from '../containers/toolBar';
 
@@ -99,6 +100,7 @@ export default class App extends Component {
       <div className="app-container">
         <ToolBar updateUi={this.updateUi} nonAvailableBlockIds={nonAvailableBlockIds} availableBlockIds={availableBlockIds} updateFilter={this.updateFilter} />
         <WeekSchedule userId={userId} username={username} filterSkillIcons={filterSkillIcons} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
+        <Filter updateFilter={this.updateFilter} />
       </div>
     );
   }
