@@ -6,7 +6,6 @@
   background-color: #F7BE29;
   width: 12px;
   transition: width 2s ease-in-out;
-  // color: #F7BE29;
   text-align: center;
   .toolbar-contents {
     position: relative;
@@ -19,6 +18,11 @@
     white-space: nowrap;
     visibility: hidden;
     font-weight: 600;
+  }
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
   }
   .skill {
     font-size: 1px;
@@ -56,7 +60,7 @@
   .skills {
     padding-bottom: 64px;
     margin: auto;
-    width: 60%;
+    width: 70%;
     text-align: center;
     .skill {
       color: rgba(160, 160, 160, 0.4);
@@ -80,9 +84,4 @@
       color: #A4ABFC;
     }
   }
-}
-
-.toolbar-contents {
-  position: relative;
-  right: 100%;
 }

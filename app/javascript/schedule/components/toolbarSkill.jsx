@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 import parse from 'html-react-parser';
 
+import { updateUserSkill } from '../actions/index';
+
 const ToolbarSkill = (props) => {
 
   const { skill, updateFilter } = props;
 
-  const [ active, setActive ] = useState(false);
+  const [ active, setActive ] = useState(skill.active);
 
-  const handleClick = () => {
-    setActive(!active);
-    // const block = document.getElementById(`${skill.id}`)
-    // const action = block.classList.contains('active') ? 'add' : 'remove';
-    const action = active ? "remove" : "add";
-    // updateFilter(skill.id, action);
-    updateFilter(skill.icon, action);
-
+  const handleClick = (e) => {
+    const userSkill = e.currentTarget;
+    updateUserSkill(userSkill.id);
   }
 
   const className = active ? "skill active" : "skill"
 
   return (
     <div className={className} onClick={handleClick} id={skill.id}>
-      {parse(skill.icon)}
+      {parse(skill.skill.skill_icon)}
     </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { createAvailability, fetchSkills, deleteAvailabilityFromTimeBlock } from '../actions/index';
+import { createAvailability, fetchUserSkills, deleteAvailabilityFromTimeBlock } from '../actions/index';
 import ToolbarSkill from '../components/toolbarSkill';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,14 +10,14 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const ToolBar = (props) => {
 
-  const { updateUi, availableBlockIds, updateFilter, nonAvailableBlockIds } = props;
+  const { updateUi, availableBlockIds, nonAvailableBlockIds } = props;
 
   const [ show, setShow ] = useState(false);
 
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    fetchSkills().promise.then(r => setSkills(r))
+    fetchUserSkills().promise.then(r => setSkills(r))
   }, [])
 
   const handleOpen = () => {
@@ -59,7 +59,13 @@ const ToolBar = (props) => {
       <div className="toolbar-container">
         <div className={className}>
           <div className="toolbar-contents">
-            <div className="header">
+            <div className="skills">
+              <h4>Set Your Skills</h4>
+              <div className="skill-grid">
+                {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} />)}
+              </div>
+            </div>
+            <div className="schedule">
               <h4>Set Your Availabilities</h4>
               <div className="hidden-available-button btn btn-secondary" id="available-button" onClick={handleSubmissions}>
                 Make Available
@@ -67,10 +73,6 @@ const ToolBar = (props) => {
               <div className="hidden-available-button btn btn-secondary mt-3" id="remove-available-button" onClick={handleSubmissions}>
                 Remove Availability
               </div>
-            </div>
-            <div className="skills">
-              <h4>Filter</h4>
-              {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} updateFilter={updateFilter} />)}
             </div>
           </div>
         </div>

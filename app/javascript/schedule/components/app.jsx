@@ -98,7 +98,7 @@ export default class App extends Component {
 
     return (
       <div className="app-container">
-        <ToolBar updateUi={this.updateUi} nonAvailableBlockIds={nonAvailableBlockIds} availableBlockIds={availableBlockIds} updateFilter={this.updateFilter} />
+        <ToolBar updateUi={this.updateUi} nonAvailableBlockIds={nonAvailableBlockIds} availableBlockIds={availableBlockIds} />
         <WeekSchedule userId={userId} username={username} filterSkillIcons={filterSkillIcons} userSkillIds={userSkillIds} makeAvailable={makeAvailable} selectBlock={this.selectBlock} />
         <Filter updateFilter={this.updateFilter} />
       </div>
