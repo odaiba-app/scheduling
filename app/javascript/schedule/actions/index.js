@@ -28,6 +28,13 @@ export function fetchSkills() {
   return { promise };
 }
 
+export function fetchUserSkills() {
+  const url = `${BASE_URL}/user_skills`;
+  const promise = fetch(url, { credentials: "same-origin"}).then(r => r.json());
+
+  return { promise };
+}
+
 
 export function createAvailability(id) {
   const url = `${BASE_URL}/user_availabilities`;
@@ -64,4 +71,15 @@ export function deleteAvailabilityFromTimeBlock(id) {
     method: 'DELETE',
     credentials: 'same-origin'
   })
+}
+
+export function updateUserSkill(id) {
+  const url = `${BASE_URL}/user_skills/${id}`;
+
+  const promise = fetch(url, {
+    method: 'PATCH',
+    credentials: 'same-origin'
+  }).then(r => r.json());
+
+  return { promise };
 }

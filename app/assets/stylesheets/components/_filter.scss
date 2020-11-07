@@ -1,0 +1,35 @@
+.filter-icon {
+  background-color: #F7BE29;
+  color: rgb(25, 25, 25);
+  height: 24px;
+  width: 24px;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  svg {
+    margin-top: 4px;
+  }
+}
+
+.filter-skill-list {
+  margin-top: 8px;
+  transition: max-height .5s ease-out;
+  max-height: 20em;
+  overflow: hidden;
+  .skill {
+    color: rgba(160, 160, 160, 0.4);
+    margin: .3em .3em .3em .3em;
+    margin-top: 0.3em;
+    cursor: pointer;
+    &:hover {
+      color: rgba(160, 160, 160, 0.8);
+    }
+  }
+  .skill.active {
+    color: $purple;
+  }
+}
+
+.hide {
+  max-height: 0 !important;
+}

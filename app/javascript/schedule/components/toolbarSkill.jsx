@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
+
+import { updateUserSkill } from '../actions/index';
 
 const ToolbarSkill = (props) => {
 
   const { skill, updateFilter } = props;
 
-  const [ active, setActive ] = useState(false);
+  const [userSkill, setUserSkill] = useState(skill)
 
-  const handleClick = () => {
-    setActive(!active);
-    // const block = document.getElementById(`${skill.id}`)
-    // const action = block.classList.contains('active') ? 'add' : 'remove';
-    const action = active ? "remove" : "add";
-    // updateFilter(skill.id, action);
-    updateFilter(skill.icon, action);
+  const [ active, setActive ] = useState('');
 
+  useEffect(() => {
+    setActive(userSkill.active);
+  }, [userSkill])
+
+  const handleClick = (e) => {
+    console.log(userSkill);
+    const userSkill = e.currentTarget;
+    updateUserSkill(userSkill.id).promise.then(r => setUserSkill(r));
   }
 
   const className = active ? "skill active" : "skill"
 
   return (
     <div className={className} onClick={handleClick} id={skill.id}>
-      {parse(skill.icon)}
+      {parse(userSkill.skill.skill_icon)}
     </div>
     )
 }
