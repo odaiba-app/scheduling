@@ -5,7 +5,7 @@ class TimeBlock < ApplicationRecord
   validates :time, presence: true, uniqueness: true
 
   def self.configure_time(user)
-    all.map {|slot| {
+    order(time: :desc).map {|slot| {
       id: slot.id,
       time: slot.time.in_time_zone(user.time_zone),
       user_availabilities: slot.user_availabilities

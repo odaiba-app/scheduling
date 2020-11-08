@@ -7,14 +7,12 @@ class FindDay < ApplicationService
   end
 
   def call
-    find_slots
+    find_slots.take(48)
   end
 
   private
 
   def find_slots
-
-    slots = {}
     case @day
     when "monday"
       @blocks.select {|slot| slot[:time].monday?}
