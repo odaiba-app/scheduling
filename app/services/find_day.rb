@@ -7,7 +7,7 @@ class FindDay < ApplicationService
   end
 
   def call
-    find_slots.take(48)
+    find_slots.take(48).reverse
   end
 
   private
