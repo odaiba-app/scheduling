@@ -2,8 +2,7 @@ class Api::V1::TimeBlocksController < Api::V1::BaseController
   before_action :configure_user_time, except: :show
 
   def day
-    @time_blocks = FindDay.call(@blocks, params[:day]).drop(12)
-    render :friday
+    @time_blocks = FindDay.call(@blocks, params[:day]).take(48).drop(12)
   end
 
   def show

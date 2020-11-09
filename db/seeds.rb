@@ -91,10 +91,9 @@ puts "Created User Skills"
 
 puts "Creating Time Blocks"
 
-# this will be UTC time from Japan
-time = Time.parse("Nov 7 2020 00:00")
+time = Time.parse("Nov 8 2020 18:00")
 
-336.times do
+376.times do
   new_time_block = TimeBlock.new(time: time)
   new_time_block.save
   puts "Created time block #{new_time_block.id}"

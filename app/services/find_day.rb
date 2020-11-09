@@ -7,7 +7,7 @@ class FindDay < ApplicationService
   end
 
   def call
-    find_slots.take(48).reverse
+    find_slots.reverse
   end
 
   private
@@ -27,7 +27,7 @@ class FindDay < ApplicationService
     when "saturday"
       @blocks.select {|slot| slot[:time].saturday?}
     when "sunday"
-      @blocks.select {|slot| slot[:time].sunday?}
+      @blocks.select {|slot| slot[:time].sunday?}.sort_by! { |block| block[:time]}.reverse.take(48)
     end
   end
 end
