@@ -63,9 +63,9 @@ const TimeBlock = (props) => {
   return (
     <>
       <div className={blockClassName} id={block.id} onClick={click}>
-        { users.length > 1 ? <FontAwesomeIcon className="multiple-availabilities-icon" size="1x" icon={faUsers} /> : '' }
         <p>{block.time}</p>
         <div className="block-icons">
+          { users.length > 1 ? <FontAwesomeIcon className="multiple-availabilities-icon" size="1x" icon={faUsers} /> : '' }
           { icons.map((skill, idx) =>  <BlockSkill icon={skill} key={idx} filterSkillIcons={filterSkillIcons} /> ) }
         </div>
       </div>
