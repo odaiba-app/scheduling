@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Cleaning database"
+UserCompany.destroy_all
+Company.destroy_all
 User.destroy_all
 Skill.destroy_all
 UserSkill.destroy_all
@@ -14,35 +16,45 @@ TimeBlock.destroy_all
 UserAvailability.destroy_all
 puts "Cleaned"
 
-puts "Creating users"
+# puts "Creating users"
 
-params = {}
-params[:username] = 'Liam'
-params[:email] = 'liam@schedule.com'
-params[:password] = 'password'
-params[:time_zone] = 'Tokyo'
-new_user = User.new(params)
-new_user.save
-puts "Created user #{new_user.id}"
+# params = {}
+# params[:username] = 'Liam'
+# params[:email] = 'liam@schedule.com'
+# params[:password] = 'password'
+# params[:time_zone] = 'Tokyo'
+# new_user = User.new(params)
+# new_user.save
+# puts "Created user #{new_user.id}"
 
-params = {}
-params[:username] = 'Rui'
-params[:email] = 'Rui@schedule.com'
-params[:password] = 'password'
-params[:time_zone] = 'Eastern Time (US & Canada)'
-new_user = User.new(params)
-new_user.save
-puts "Created user #{new_user.id}"
+# params = {}
+# params[:username] = 'Rui'
+# params[:email] = 'Rui@schedule.com'
+# params[:password] = 'password'
+# params[:time_zone] = 'Eastern Time (US & Canada)'
+# new_user = User.new(params)
+# new_user.save
+# puts "Created user #{new_user.id}"
 
-params = {}
-params[:username] = 'utc'
-params[:email] = 'utc@schedule.com'
-params[:password] = 'password'
-new_user = User.new(params)
-new_user.save
-puts "Created user #{new_user.id}"
+# params = {}
+# params[:username] = 'utc'
+# params[:email] = 'utc@schedule.com'
+# params[:password] = 'password'
+# new_user = User.new(params)
+# new_user.save
+# puts "Created user #{new_user.id}"
 
-puts "Users created!"
+# puts "Users created!"
+
+puts 'Creating Company'
+
+company = Company.create!
+puts "Created company #{company.id}"
+
+puts 'Assigning users to company'
+
+User.all.each { |user| UserCompany.create!(user: user, company: company) }
+puts "Assigned #{UserCompany.all.size} users"
 
 puts "Creating Skills"
 
