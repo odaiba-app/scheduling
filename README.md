@@ -1,6 +1,6 @@
 # Odaiba Scheduling app
 
-Created using a boilerplate from the Le Wagon team. Allows restaurants to save on labor and hardware costs by enabling customers to use their smartphones to view their menu and order directly through an API, gained via authentication by QR. 
+Created using a boilerplate from the Le Wagon team. Enables team members to arrange their schedules for pair programming after selecting their skills.
 
 ## Prerequisites
 
