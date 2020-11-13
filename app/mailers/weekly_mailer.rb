@@ -3,4 +3,12 @@ class WeeklyMailer < ApplicationMailer
     @user = params[:user]
     mail(to: @user.email, subject: '[Scheduler] Prepare for the New Week')
   end
+
+  def remind_to_input
+
+  end
+
+  def prompt_to_collaborate
+
+  end
 end

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :time_blocks, through: :user_availabilities
   has_many :user_skills, dependent: :destroy
   has_many :skills, through: :user_skills
+  has_many :user_companies
+  has_many :user_companies, through: :user_companies
 
   validates :username, presence: true
 
