@@ -3,7 +3,9 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
     @user_availability = UserAvailability.new(availability_params)
     @user_availability.user = current_user
     if @user_availability.save
-      # ReminderSender.new.call if User.find_available >= User.all.size * 0.8 && !Company.first.reminder_sent?
+      if User.find_available >= User.all.size * 0.8 && !Company.first.reminder_sent?
+        ReminderSender.new.call
+      end
       render json: @user_availability
     else
       render_error
