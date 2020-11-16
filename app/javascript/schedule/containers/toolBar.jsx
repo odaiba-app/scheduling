@@ -61,7 +61,7 @@ const ToolBar = (props) => {
           <div className="toolbar-contents">
             <div className="skills">
               <h4>Set Your Skills</h4>
-              <div className="skill-grid">
+              <div className="skill-container">
                 {skills.map((skill, idx) => <ToolbarSkill skill={skill} key={idx} />)}
               </div>
             </div>
