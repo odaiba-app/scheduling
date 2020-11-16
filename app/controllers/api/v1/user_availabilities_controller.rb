@@ -18,15 +18,13 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
 
   def multiple
     ids = time_block_ids_params
-    ids.each do |id|
-      UserAvailability.create(user: current_user, time_block_id: id)
-    end
+    ids.each {|id| UserAvailability.create(user: current_user, time_block_id: id) }
   end
 
   private
 
   def availability_params
-    params.require(:user_availability).permit(:time_block_id, :time_block_ids)
+    params.require(:user_availability).permit(:time_block_id)
   end
 
   def time_block_ids_params
