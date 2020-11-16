@@ -21,7 +21,7 @@ const ToolbarSkill = (props) => {
     updateUserSkill(userSkill.id).promise.then(r => setUserSkill(r));
   }
 
-  const className = active ? "skill active" : "skill"
+  const className = active ? "skill active col-6" : "skill col-6"
 
   return (
     <div className={className} onClick={handleClick} id={skill.id}>
