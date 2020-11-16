@@ -65,9 +65,9 @@ export function createMultipleAvailabilities(array) {
     },
     credentials: 'same-origin',
     body: JSON.stringify(body)
-  }).then(r => r.json());
+  })
 
-  return { promise };
+  // return { promise };
 }
 
 export function deleteAvailability(availId) {
