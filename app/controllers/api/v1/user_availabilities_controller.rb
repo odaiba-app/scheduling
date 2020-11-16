@@ -3,9 +3,6 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
     @user_availability = UserAvailability.new(availability_params)
     @user_availability.user = current_user
     if @user_availability.save
-      if User.find_available >= User.all.size * 0.8 && !Company.first.reminder_sent?
-        ReminderSender.new.call
-      end
       render json: @user_availability
     else
       render_error
@@ -21,7 +18,11 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
 
   def multiple
     ids = time_block_ids_params
-    ids.each {|id| UserAvailability.create(user: current_user, time_block_id: id) }
+    availabilities = ids.map { |id| UserAvailability.create(user: current_user, time_block_id: id) }
+    if User.find_available >= User.all.size * 0.8 && !Company.first.reminder_sent?
+      ReminderSender.new.call
+    end
+    render json: availabilities
   end
 
   private
