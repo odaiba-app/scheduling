@@ -36,9 +36,26 @@ export function fetchUserSkills() {
 }
 
 
-export function createAvailability(id) {
-  const url = `${BASE_URL}/user_availabilities`;
-  const body = { "user_availability": { "time_block_id": id } }
+// export function createAvailability(id) {
+//   const url = `${BASE_URL}/user_availabilities`;
+//   const body = { "user_availability": { "time_block_id": id } }
+
+//   const promise = fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     },
+//     credentials: 'same-origin',
+//     body: JSON.stringify(body)
+//   }).then(r => r.json());
+
+//   return { promise };
+// }
+
+export function createMultipleAvailabilities(array) {
+  const url = `${BASE_URL}/user_availabilities/multiple`;
+  const body = { "time_block_ids": array }
 
   const promise = fetch(url, {
     method: 'POST',
@@ -55,7 +72,6 @@ export function createAvailability(id) {
 
 export function deleteAvailability(availId) {
   const url = `${BASE_URL}/user_availabilities/${availId}`;
-  // const body = { "user_availability": { "time_block_id": blockId } }
 
   const promise = fetch(url, {
     method: 'DELETE',
@@ -65,7 +81,6 @@ export function deleteAvailability(availId) {
 
 export function deleteAvailabilityFromTimeBlock(id) {
   const url = `${BASE_URL}/time_blocks/${id}/remove_user_availability`;
-  // const body = { "user_availability": { "time_block_id": blockId } }
 
   const promise = fetch(url, {
     method: 'DELETE',

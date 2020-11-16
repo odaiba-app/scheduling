@@ -16,11 +16,25 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
     render json: timeblock
   end
 
+  def multiple
+    ids = params[:time_block_ids]
+    p ids
+    ids.each do |id|
+      new_avail = UserAvailability.new(user: current_user, time_block_id: id)
+      new_avail.save
+    end
+    render json: UserAvailability.all
+  end
+
   private
 
   def availability_params
-    params.require(:user_availability).permit(:time_block_id)
+    params.require(:user_availability).permit(:time_block_id, :time_block_ids)
   end
+
+  # def time_block_ids_params
+  #   params.permit(:time_block_ids)
+  # end
 
   def render_error
     render json: { errors: @user_availability.errors.full_messages },
