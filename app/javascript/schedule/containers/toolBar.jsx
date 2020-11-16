@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { createAvailability, fetchUserSkills, deleteAvailabilityFromTimeBlock } from '../actions/index';
+import { createMultipleAvailabilities, fetchUserSkills, deleteAvailabilityFromTimeBlock } from '../actions/index';
 import ToolbarSkill from '../components/toolbarSkill';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,7 +33,8 @@ const ToolBar = (props) => {
   const handleSubmissions = () => {
     const selectedBlocks = document.querySelectorAll(".highlight");
     if (availableBlockIds.length > 0 ) {
-      availableBlockIds.forEach( id => { createAvailability(id); })
+      createMultipleAvailabilities(availableBlockIds);
+      // availableBlockIds.forEach( id => { createAvailability(id); })
       selectedBlocks.forEach( block => {
         block.classList.remove('highlight');
         block.classList.add('active');
@@ -47,7 +48,6 @@ const ToolBar = (props) => {
       })
     }
     setShow(false);
-
     updateUi();
   }
 
