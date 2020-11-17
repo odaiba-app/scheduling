@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
     skills = Skill.all
     skills.each {|skill| UserSkill.create(skill: skill, user: @user)}
+    UserCompany.create!(user: @user, company: Company.first)
   end
 
   # GET /resource/edit
