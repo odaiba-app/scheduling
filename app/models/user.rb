@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :skills, through: :user_skills
   has_many :user_companies
   has_many :companies, through: :user_companies
+  has_many :calendars, dependent: :destroy
 
   validates :username, presence: true
 
