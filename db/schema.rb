@@ -15,6 +15,12 @@ ActiveRecord::Schema.define(version: 2020_11_17_010549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "companies", force: :cascade do |t|
+    t.boolean "reminder_sent", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -35,6 +41,15 @@ ActiveRecord::Schema.define(version: 2020_11_17_010549) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["time_block_id"], name: "index_user_availabilities_on_time_block_id"
     t.index ["user_id"], name: "index_user_availabilities_on_user_id"
+  end
+
+  create_table "user_companies", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_user_companies_on_company_id"
+    t.index ["user_id"], name: "index_user_companies_on_user_id"
   end
 
   create_table "user_skills", force: :cascade do |t|
@@ -65,6 +80,8 @@ ActiveRecord::Schema.define(version: 2020_11_17_010549) do
 
   add_foreign_key "user_availabilities", "time_blocks"
   add_foreign_key "user_availabilities", "users"
+  add_foreign_key "user_companies", "companies"
+  add_foreign_key "user_companies", "users"
   add_foreign_key "user_skills", "skills"
   add_foreign_key "user_skills", "users"
 end

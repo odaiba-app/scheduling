@@ -16,9 +16,12 @@ const ToolBar = (props) => {
 
   const [skills, setSkills] = useState([]);
 
+  const [initialLoad, setInitalLoad] = useState(true);
+
   useEffect(() => {
-    fetchUserSkills().promise.then(r => setSkills(r))
-  }, [])
+    if (initialLoad) fetchUserSkills().promise.then(r => setSkills(r));
+    if (nonAvailableBlockIds.length > 0 || availableBlockIds.length > 0) setInitalLoad(false);
+  }, [availableBlockIds, nonAvailableBlockIds])
 
   const handleOpen = () => {
     setShow(true);
@@ -53,11 +56,13 @@ const ToolBar = (props) => {
 
   const icon = show ? faChevronLeft : faChevronRight;
   const click = show ? handleClose : handleOpen;
-  const className = show ? "toolbar active" : "toolbar";
-
+  const toolbarClassName = show ? "toolbar active" : "toolbar";
+  const availableClassName = availableBlockIds.length > 0 ? "btn btn-secondary" : "hidden-available-button btn btn-secondary"
+  const nonAvailableClassName = nonAvailableBlockIds.length > 0 ? "btn btn-secondary" : "hidden-available-button btn btn-secondary"
+  const indicatorClassName = initialLoad && availableBlockIds.length < 1 && nonAvailableBlockIds.length < 1 ? "click-here-indicator" : "click-here-indicator-hidden"
   return (
       <div className="toolbar-container">
-        <div className={className}>
+        <div className={toolbarClassName}>
           <div className="toolbar-contents">
             <div className="skills">
               <h4>Set Your Skills</h4>
@@ -67,10 +72,13 @@ const ToolBar = (props) => {
             </div>
             <div className="schedule">
               <h4>Set Your Availabilities</h4>
-              <div className="hidden-available-button btn btn-secondary" id="available-button" onClick={handleSubmissions}>
+              <div className={availableClassName} id="available-button" onClick={handleSubmissions}>
                 Make Available
               </div>
-              <div className="hidden-available-button btn btn-secondary mt-3" id="remove-available-button" onClick={handleSubmissions}>
+              <div className={indicatorClassName}>
+                <p>Click Here <i className="fas fa-long-arrow-alt-right"></i></p>
+              </div>
+              <div className={nonAvailableClassName} id="remove-available-button" onClick={handleSubmissions}>
                 Remove Availability
               </div>
             </div>

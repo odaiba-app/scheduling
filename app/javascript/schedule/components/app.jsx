@@ -41,21 +41,21 @@ export default class App extends Component {
     selectedBlocks.forEach( block => {
       block.classList.remove('highlight');
     })
-    const availableButton = document.getElementById("available-button");
-    const removeAvailableButton = document.getElementById("remove-available-button");
-    if (this.state.makeAvailable) {
-      availableButton.classList.add('hidden-available-button');
-      removeAvailableButton.classList.add('hidden-available-button');
-    }
+    // const availableButton = document.getElementById("available-button");
+    // const removeAvailableButton = document.getElementById("remove-available-button");
+    // if (this.state.makeAvailable) {
+    //   availableButton.classList.add('hidden-available-button');
+    //   removeAvailableButton.classList.add('hidden-available-button');
+    // }
   }
 
   selectBlock = (id, action, active) => {
     active ? this.nonAvailableBlocks(id, action) : this.availableBlocks(id, action);
-    const selectedBlocks = document.querySelectorAll(".highlight");
-    const availableButton = document.getElementById("available-button");
-    const removeAvailableButton = document.getElementById("remove-available-button");
-    selectedBlocks.length > 0 ? availableButton.classList.remove('hidden-available-button') : availableButton.classList.add('hidden-available-button');
-    selectedBlocks.length > 0 ? removeAvailableButton.classList.remove('hidden-available-button') : removeAvailableButton.classList.add('hidden-available-button');
+    // const selectedBlocks = document.querySelectorAll(".highlight");
+    // const availableButton = document.getElementById("available-button");
+    // const removeAvailableButton = document.getElementById("remove-available-button");
+    // selectedBlocks.length > 0 ? availableButton.classList.remove('hidden-available-button') : availableButton.classList.add('hidden-available-button');
+    // selectedBlocks.length > 0 ? removeAvailableButton.classList.remove('hidden-available-button') : removeAvailableButton.classList.add('hidden-available-button');
 
   }
 

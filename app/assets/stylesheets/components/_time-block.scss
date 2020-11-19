@@ -53,3 +53,11 @@
 .time-block.highlight {
   background-color: #F7BE29;
 }
+
+.availability-username {
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
