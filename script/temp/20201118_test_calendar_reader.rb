@@ -6,7 +6,7 @@ users = User.where(id: user_ids)
 users.each_with_index do |user, idx|
   puts "index #{idx} for user #{user.username}"
 end
-print '>'
+print '> '
 index = gets.chomp.to_i
 
 user = users[index]
