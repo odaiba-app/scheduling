@@ -1,15 +1,15 @@
 var emailButton = document.getElementById('emailButton');
 var notificationElement = document.getElementById('notifiID');
 
-if (emailButton.innerHTML === "Email Notifications On"){
+if (emailButton.innerHTML === "Email Notifications On") {
 	emailButton.innerHTML = "Email Notifications Off";
-}else{
+} else {
 	emailButton.innerHTML = "Email Notifications On";
 }
 
-if(notificationElement){
+if (notificationElement) {
 	notificationElement.innerHTML = "<%= j render partial: 'shared/flashes', locals: {notice: flash[:notice]} %>";
-}else{
+} else {
 	var notificationElement = document.createElement("div");
 	notificationElement.id = "notifiID";
 	notificationElement.innerHTML = "<%= j render partial: 'shared/flashes', locals: {notice: flash[:notice]} %>";
