@@ -1,4 +1,6 @@
 class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
+  before_action :activate_user
+
   def create
     @user_availability = UserAvailability.new(availability_params)
     @user_availability.user = current_user
@@ -40,4 +42,7 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
       status: :unprocessable_entity
   end
 
+  def activate_user
+    current_user.update(active: true) unless current_user.active?
+  end
 end
