@@ -4,7 +4,7 @@
     <% if user_signed_in? %>
       <div class="availability-count pl-5 d-flex align-items-center">
         <i class="fas fa-users"></i>
-        <p class="mb-0 pl-3"><%= User.find_available %> / <%= User.all.count %></p>
+        <p class="mb-0 pl-3"><%= User.find_available %> / <%= User.where(active: true).size %></p>
       </div>
     <% end %>
   </div>
