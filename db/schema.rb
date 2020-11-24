@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_11_18_124451) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.string "time_zone", default: "UTC"
+    t.boolean "email_notification_enabled", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
