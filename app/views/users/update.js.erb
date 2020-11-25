@@ -1,0 +1,17 @@
+var emailButton = document.getElementById('emailButton');
+var notificationElement = document.getElementById('notifiID');
+
+if (emailButton.innerHTML === "Email Notifications On") {
+	emailButton.innerHTML = "Email Notifications Off";
+} else {
+	emailButton.innerHTML = "Email Notifications On";
+}
+
+if (notificationElement) {
+	notificationElement.innerHTML = "<%= j render partial: 'shared/flashes', locals: {notice: flash[:notice]} %>";
+} else {
+	var notificationElement = document.createElement("div");
+	notificationElement.id = "notifiID";
+	notificationElement.innerHTML = "<%= j render partial: 'shared/flashes', locals: {notice: flash[:notice]} %>";
+	document.querySelector('body').appendChild(notificationElement);
+}
