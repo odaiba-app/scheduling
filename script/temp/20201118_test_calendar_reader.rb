@@ -11,6 +11,10 @@ index = gets.chomp.to_i
 
 user = users[index]
 
+puts 'Delete availabilities'
+
+UserAvailability.where(user: user).destroy_all
+
 puts "Creating time blocks for user #{user.username}"
 
 events = CalendarReader.new(user.calendars.pluck(:link)).next_week_events

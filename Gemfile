@@ -63,3 +63,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # for connecting to google calendar
 gem 'icalendar'
+gem 'icalendar-recurrence'
