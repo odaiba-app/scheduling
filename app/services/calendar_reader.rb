@@ -20,13 +20,14 @@ class CalendarReader
   def read_events
     @calendar_links.each do |calendar|
       cal = Icalendar::Calendar.parse(URI.open(calendar).read).first
-      @events = cal.events.map{ |event| event.occurrences_between(@start_time, @end_time) }.flatten
+      @events << cal.events.map{ |event| event.occurrences_between(@start_time, @end_time) }
     end
+    @events.flatten!
   end
 
   def break_into_30_minutes_slots
     @events.each do |event|
-      start_time = event.start_time - (start_time.min % 30).minutes # round down event to the nearest 30 minute mark
+      start_time = event.start_time - (event.start_time.min % 30).minutes # round down event to the nearest 30 minute mark
       until start_time >= event.end_time
         @time_slots << start_time unless @time_slots.include?(start_time)
         start_time += 30.minutes
