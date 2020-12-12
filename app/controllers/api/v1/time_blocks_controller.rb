@@ -16,6 +16,17 @@ class Api::V1::TimeBlocksController < Api::V1::BaseController
     render json: time_block
   end
 
+  def invite_to_collab
+    user = User.find(params[:user_id])
+    time_block = TimeBlock.find(params[:id])
+    skills = SharedSkillsMatcher.new(time_block, user, current_user).call
+    CollabMailer.with(
+      from_user: current_user,
+      to_user: user,
+      skills: skills
+    ).invite_to_collaborate.deliver_now
+  end
+
   private
 
   def configure_user_time
