@@ -29,8 +29,6 @@ const AvailableUser = (props) => {
   }
 
   const handleMail = () => {
-    // console.log(user)
-    // console.log(username)
     inviteUserToCollab(user.user_id).promise.then(r => {
       if (r.message === `Invitation to ${user.username} sent`) {
         swal({
