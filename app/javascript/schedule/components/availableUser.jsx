@@ -30,16 +30,10 @@ const AvailableUser = (props) => {
 
   const handleMail = () => {
     inviteUserToCollab(user.user_id).promise.then(r => {
-      if (r.message === `Invitation to ${user.username} sent`) {
-        swal({
-          text: `Mail sent to ${user.username}`,
-          icon: "success"
-        });
+      if (r.message) {
+        swal({ text: r.message, icon: "success" });
       } else {
-        swal({
-          text: `Something went wrong`,
-          icon: "error"
-        });
+        swal({ text: r.error, icon: "error" });
       }
     });
   }
