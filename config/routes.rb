@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :user_skills, only: :update
   resources :users, only: :update
-  
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :skills, only: :index
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       end
       get 'day/:day', to: 'time_blocks#day', as: :day
       get '/logged', to: "users#logged", as: :users_logged
+      post 'users/:id/invite_to_collab', to: 'users#invite_to_collab'
       resources :user_availabilities, only: %i[ create destroy ] do
         collection do
           post 'multiple'

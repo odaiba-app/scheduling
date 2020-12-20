@@ -35,24 +35,6 @@ export function fetchUserSkills() {
   return { promise };
 }
 
-
-// export function createAvailability(id) {
-//   const url = `${BASE_URL}/user_availabilities`;
-//   const body = { "user_availability": { "time_block_id": id } }
-
-//   const promise = fetch(url, {
-//     method: 'POST',
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json'
-//     },
-//     credentials: 'same-origin',
-//     body: JSON.stringify(body)
-//   }).then(r => r.json());
-
-//   return { promise };
-// }
-
 export function createMultipleAvailabilities(array) {
   const url = `${BASE_URL}/user_availabilities/multiple`;
   const body = { "time_block_ids": array }
@@ -93,6 +75,17 @@ export function updateUserSkill(id) {
 
   const promise = fetch(url, {
     method: 'PATCH',
+    credentials: 'same-origin'
+  }).then(r => r.json());
+
+  return { promise };
+}
+
+export function inviteUserToCollab(id) {
+  const url = `${BASE_URL}/users/${id}/invite_to_collab`;
+
+  const promise = fetch(url, {
+    method: 'POST',
     credentials: 'same-origin'
   }).then(r => r.json());
 
