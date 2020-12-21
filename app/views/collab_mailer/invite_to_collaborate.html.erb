@@ -1,5 +1,5 @@
 <p>Hey there <%= @to_user.username %></p>
-<p><%= @from_user.username %> would like to collaborate with you on <%= @skills.join(', ').sub(/.*\K,\s/, ' or ') %>.</p>
-<p>Reach out to him via email at <%= mail_to @from_user.email, @from_user.email %> or via Slack.</p>
+<p><%= @from_user.username %> would like to collaborate with you on <%= @skills.join(', ').sub(/.*\K,\s/, ' or ') %> on <%= @to_user_time.to_formatted_s(:long_ordinal) %>.</p>
+<p>Reach out to him via email at <%= mail_to @from_user.email, @from_user.email %> (in cc) or via Slack.</p>
 <p>Remember that you can write any feedback for the app on <%= link_to 'Slack', 'https://app.slack.com/client/T016E9WJ8F4/C01E39SPL4W' %></p>
 <p>Cheers</p>

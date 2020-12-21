@@ -81,12 +81,18 @@ export function updateUserSkill(id) {
   return { promise };
 }
 
-export function inviteUserToCollab(id) {
-  const url = `${BASE_URL}/users/${id}/invite_to_collab`;
+export function inviteUserToCollab(user_id, blockId) {
+  const url = `${BASE_URL}/time_blocks/${blockId}/invite_to_collab`;
+  const body = { "user_id": user_id }
 
   const promise = fetch(url, {
     method: 'POST',
-    credentials: 'same-origin'
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(body)
   }).then(r => r.json());
 
   return { promise };

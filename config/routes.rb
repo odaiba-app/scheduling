@@ -18,11 +18,11 @@ Rails.application.routes.draw do
       resources :time_blocks, only: :show do
         member do
           delete 'remove_user_availability'
+          post 'invite_to_collab'
         end
       end
       get 'day/:day', to: 'time_blocks#day', as: :day
       get '/logged', to: "users#logged", as: :users_logged
-      post 'users/:id/invite_to_collab', to: 'users#invite_to_collab'
       resources :user_availabilities, only: %i[ create destroy ] do
         collection do
           post 'multiple'
