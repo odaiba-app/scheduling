@@ -11,9 +11,9 @@ class Api::V1::TimeBlocksController < Api::V1::BaseController
   end
 
   def remove_user_availability
-    user_availability = time_block.user_availabilities.where(user: current_user).first
+    user_availability = @time_block.user_availabilities.where(user: current_user).first
     user_availability.destroy
-    render json: time_block
+    render json: @time_block
   end
 
   def invite_to_collab
