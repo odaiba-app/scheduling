@@ -29,7 +29,7 @@ const AvailableUser = (props) => {
   }
 
   const handleMail = () => {
-    inviteUserToCollab(user.user_id).promise.then(r => {
+    inviteUserToCollab(user.user_id, block.id).promise.then(r => {
       if (r.message) {
         swal({ text: r.message, icon: "success" });
       } else {
