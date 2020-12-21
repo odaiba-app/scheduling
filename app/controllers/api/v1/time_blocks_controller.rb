@@ -21,7 +21,7 @@ class Api::V1::TimeBlocksController < Api::V1::BaseController
     skills = SharedSkillsMatcher.new(user, current_user).call
     raise StandardError.new('No shared skills') if skills.blank?
 
-    to_user_time = time_block.time.in_time_zone(user.time_zone)
+    to_user_time = @time_block.time.in_time_zone(user.time_zone)
     CollabMailer.with(
       from_user: current_user,
       to_user: user,
@@ -40,6 +40,6 @@ class Api::V1::TimeBlocksController < Api::V1::BaseController
   end
 
   def set_time_block
-    time_block = TimeBlock.find(params[:id])
+    @time_block = TimeBlock.find(params[:id])
   end
 end
