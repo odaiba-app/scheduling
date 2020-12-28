@@ -13,7 +13,6 @@ const TimeBlock = (props) => {
   const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIcons } = props;
 
   const [show, setShow] = useState(false);
-  // const [initialLoad, setInitialLoad] = useState(false);
   const [blockInfo, setBlockInfo] = useState(block);
   const [users, setUsers] = useState([]);
   const [icons, setIcons] = useState([]);
@@ -48,8 +47,12 @@ const TimeBlock = (props) => {
   const handleHighlight = () => {
     const timeBlock = document.getElementById(`${block.id}`);
     let active = false;
-    if ( users.includes(username) ) {
-      timeBlock.classList.toggle('active');
+    if (users.includes(username)) {
+      if (blockInfo.user_availabilities[0].recurring) {
+        timeBlock.classList.toggle('recurring');
+      } else {
+        timeBlock.classList.toggle('active');
+      }
       active = true;
     }
     timeBlock.classList.toggle('highlight');
@@ -57,12 +60,17 @@ const TimeBlock = (props) => {
     selectBlock(timeBlock.id, action, active);
   }
 
-  const blockClassName = users.includes(username) ? "time-block active" : "time-block";
+  const blockClassName = () => {
+    return !users.includes(username) ? "time-block"
+          : blockInfo.user_availabilities[0].recurring ? "time-block recurring"
+          : "time-block active";
+  }
+
   const click = makeAvailable ? handleHighlight : handleShow;
 
   return (
     <>
-      <div className={blockClassName} id={block.id} onClick={click}>
+      <div className={blockClassName()} id={block.id} onClick={click}>
         <p>{block.time}</p>
         <div className="block-icons">
           { users.length > 1 ? <FontAwesomeIcon className="multiple-availabilities-icon" size="1x" icon={faUsers} /> : '' }
