@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { createMultipleAvailabilities, fetchUserSkills, deleteAvailabilityFromTimeBlock } from '../actions/index';
+import { createMultipleAvailabilities, createRecurringAvailabilities, fetchUserSkills, deleteAvailabilityFromTimeBlock } from '../actions/index';
 import ToolbarSkill from '../components/toolbarSkill';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,14 +33,19 @@ const ToolBar = (props) => {
     updateUi();
   }
 
-  const handleSubmissions = () => {
+  const handleSubmissions = (e) => {
     const selectedBlocks = document.querySelectorAll(".highlight");
-    if (availableBlockIds.length > 0 ) {
+    if (availableBlockIds.length > 0 && e.target.id === 'available-button' ) {
       createMultipleAvailabilities(availableBlockIds);
-      // availableBlockIds.forEach( id => { createAvailability(id); })
       selectedBlocks.forEach( block => {
         block.classList.remove('highlight');
         block.classList.add('active');
+      })
+    } else {
+      createRecurringAvailabilities(availableBlockIds);
+      selectedBlocks.forEach( block => {
+        block.classList.remove('highlight');
+        block.classList.add('recurring');
       })
     }
     if (nonAvailableBlockIds.length > 0 ) {
@@ -74,6 +79,9 @@ const ToolBar = (props) => {
               <h4>Set Your Availabilities</h4>
               <div className={availableClassName} id="available-button" onClick={handleSubmissions}>
                 Make Available
+              </div>
+              <div className={availableClassName} id="recurring-button" onClick={handleSubmissions}>
+                Make Recurring
               </div>
               <div className={indicatorClassName}>
                 <p>Click Here <i className="fas fa-long-arrow-alt-right"></i></p>

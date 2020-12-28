@@ -52,6 +52,23 @@ export function createMultipleAvailabilities(array) {
   // return { promise };
 }
 
+export function createRecurringAvailabilities(array) {
+  const url = `${BASE_URL}/user_availabilities/multiple`;
+  const body = { "time_block_ids": array, "recurring": true }
+
+  const promise = fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(body)
+  })
+
+  // return { promise };
+}
+
 export function deleteAvailability(availId) {
   const url = `${BASE_URL}/user_availabilities/${availId}`;
 

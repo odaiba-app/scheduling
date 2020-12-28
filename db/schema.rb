@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 2020_12_26_132043) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
+    t.string "time_zone", default: "UTC"
+    t.boolean "weekly_email", default: true
     t.boolean "email_notification_enabled", default: true
     t.boolean "active", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
