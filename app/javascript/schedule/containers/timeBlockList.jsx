@@ -12,7 +12,7 @@ export default class TimeBlockList extends React.Component {
     super(props);
     this.state = {
       selectedKeys: [],
-      timeBlocks: []
+      timeBlocks: [],
     };
     fetchDay(this.props.day.toLowerCase()).promise.then(r => this.setState({timeBlocks: r}));
   }
@@ -20,7 +20,25 @@ export default class TimeBlockList extends React.Component {
   handleSelection = (selectedKeys) => {
     if (this.props.makeAvailable) {
       this.setState({selectedKeys: selectedKeys });
-      console.log(selectedKeys);
+    }
+  }
+
+  handleEnd = () => {
+    if (this.props.makeAvailable) {
+      const blockIds = Array.from(this.state.selectedKeys, x => x.id)
+      let active = false;
+      const action = 'add'
+      this.state.selectedKeys.forEach(key => {
+        key.user_availabilities.forEach(avail => {
+          if (avail.username === this.props.username) {
+            // timeBlock.classList.toggle('active');
+            active = true;
+          }
+        })
+      })
+      // const action = timeBlock.classList.contains('highlight') ? 'add' : 'remove';
+      this.props.selectBlock(blockIds, action, active);
+      // console.log(blockIds);
     }
   }
 
@@ -29,7 +47,7 @@ export default class TimeBlockList extends React.Component {
     const { day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIcons } = this.props;
     const { timeBlocks, selectedKeys } = this.state;
     return (
-      <SelectableGroup onSelection={this.handleSelection}>
+      <SelectableGroup onSelection={this.handleSelection} onEndSelection={this.handleEnd}>
         {timeBlocks.map((item, i) => {
             let selected = selectedKeys.indexOf(item) > -1;
             return (

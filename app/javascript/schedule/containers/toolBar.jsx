@@ -36,7 +36,7 @@ const ToolBar = (props) => {
   const handleSubmissions = () => {
     const selectedBlocks = document.querySelectorAll(".highlight");
     if (availableBlockIds.length > 0 ) {
-      createMultipleAvailabilities(availableBlockIds);
+      createMultipleAvailabilities(availableBlockIds.flat());
       // availableBlockIds.forEach( id => { createAvailability(id); })
       selectedBlocks.forEach( block => {
         block.classList.remove('highlight');
@@ -44,7 +44,7 @@ const ToolBar = (props) => {
       })
     }
     if (nonAvailableBlockIds.length > 0 ) {
-      nonAvailableBlockIds.forEach( id => { deleteAvailabilityFromTimeBlock(id); })
+      nonAvailableBlockIds.flat().forEach( id => { deleteAvailabilityFromTimeBlock(id); })
       selectedBlocks.forEach( block => {
         block.classList.remove('highlight');
         block.classList.remove('active');
