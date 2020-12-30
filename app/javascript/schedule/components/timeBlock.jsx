@@ -10,7 +10,7 @@ import { fetchBlock, createAvailability } from '../actions/index';
 
 const TimeBlock = (props) => {
 
-  const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIcons } = props;
+  const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIcons, selected } = props;
 
   const [show, setShow] = useState(false);
   // const [initialLoad, setInitialLoad] = useState(false);
@@ -57,12 +57,14 @@ const TimeBlock = (props) => {
     selectBlock(timeBlock.id, action, active);
   }
 
-  const blockClassName = users.includes(username) ? "time-block active" : "time-block";
+  const clickMode = users.includes(username) ? "time-block active" : "time-block";
+  const dragMode = selected ? "time-block highlight" : clickMode
+  const blockClassName = dragMode;
   const click = makeAvailable ? handleHighlight : handleShow;
 
   return (
     <>
-      <div className={blockClassName} id={block.id} onClick={click}>
+      <div className={blockClassName} id={block.id} onClick={click} >
         <p>{block.time}</p>
         <div className="block-icons">
           { users.length > 1 ? <FontAwesomeIcon className="multiple-availabilities-icon" size="1x" icon={faUsers} /> : '' }
