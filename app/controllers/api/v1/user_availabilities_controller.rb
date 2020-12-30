@@ -30,7 +30,7 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
   private
 
   def availability_params
-    params.require(:user_availability).permit(:time_block_id)
+    params.require(:user_availability).permit(:time_block_id, :recurring)
   end
 
   def time_block_ids_params
