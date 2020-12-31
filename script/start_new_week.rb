@@ -1,3 +1,3 @@
-puts 'Startin new week'
+puts 'Starting new week'
 StartNewWeek.call
 puts 'New week started'
