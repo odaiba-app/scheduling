@@ -1,16 +1,6 @@
 class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
   before_action :activate_user
 
-  # def create
-  #   @user_availability = UserAvailability.new(availability_params)
-  #   @user_availability.user = current_user
-  #   if @user_availability.save
-  #     render json: @user_availability
-  #   else
-  #     render_error
-  #   end
-  # end
-
   def destroy
     @user_availability = UserAvailability.find(params[:id])
     timeblock = @user_availability.time_block
@@ -36,7 +26,7 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
   end
 
   def multi_availability_params
-    params.require(:user_availability).permit(:recurring, :time_block_ids  => [])
+    params.require(:user_availability).permit(:recurring, time_block_ids: [])
   end
 
   def render_error
