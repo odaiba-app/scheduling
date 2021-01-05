@@ -83,8 +83,7 @@ export default class App extends Component {
   render() {
 
     const { userId, username, userSkillIds, makeAvailable, availableBlockIds, filterSkillIcons, nonAvailableBlockIds } = this.state;
-    console.log(availableBlockIds);
-    console.log(nonAvailableBlockIds);
+
     return (
       <div className="app-container">
         <ToolBar updateUi={this.updateUi} nonAvailableBlockIds={nonAvailableBlockIds} availableBlockIds={availableBlockIds} />

@@ -54,6 +54,19 @@
   }
 }
 
+.time-block.recurring {
+  background-color: #acfca3;
+  .multiple-availabilities-icon {
+    color: #F7BE29;
+    display: initial;
+  }
+  &:hover {
+    .multiple-availabilities-icon {
+      display: none;
+    }
+  }
+}
+
 .time-block.highlight {
   background-color: #F7BE29;
 }

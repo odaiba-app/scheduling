@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       end
       get 'day/:day', to: 'time_blocks#day', as: :day
       get '/logged', to: "users#logged", as: :users_logged
-      resources :user_availabilities, only: %i[ create destroy ] do
+      resources :user_availabilities, only:  :destroy do
         collection do
           post 'multiple'
         end

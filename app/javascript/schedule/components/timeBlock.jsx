@@ -13,7 +13,6 @@ const TimeBlock = (props) => {
   const { block, day, userId, username, userSkillIds, makeAvailable, selectBlock, filterSkillIcons, selected } = props;
 
   const [show, setShow] = useState(false);
-  // const [initialLoad, setInitialLoad] = useState(false);
   const [blockInfo, setBlockInfo] = useState(block);
   const [users, setUsers] = useState([]);
   const [icons, setIcons] = useState([]);
@@ -48,8 +47,12 @@ const TimeBlock = (props) => {
   const handleHighlight = () => {
     const timeBlock = document.getElementById(`${block.id}`);
     let active = false;
-    if ( users.includes(username) ) {
-      timeBlock.classList.toggle('active');
+    if (users.includes(username)) {
+      if (blockInfo.user_availabilities[0].recurring) {
+        timeBlock.classList.toggle('recurring');
+      } else {
+        timeBlock.classList.toggle('active');
+      }
       active = true;
     }
     timeBlock.classList.toggle('highlight');
@@ -57,8 +60,13 @@ const TimeBlock = (props) => {
     selectBlock(timeBlock.id, action, active);
   }
 
-  const clickMode = users.includes(username) ? "time-block active" : "time-block";
-  const dragMode = selected ? "time-block highlight" : clickMode
+  // const clickMode = users.includes(username) ? "time-block active" : "time-block";
+  const clickMode = () => {
+    return !users.includes(username) ? "time-block"
+          : blockInfo.user_availabilities[0].recurring ? "time-block recurring"
+          : "time-block active";
+  }
+  const dragMode = selected ? "time-block highlight" : clickMode()
   const blockClassName = dragMode;
   const click = makeAvailable ? handleHighlight : handleShow;
 
