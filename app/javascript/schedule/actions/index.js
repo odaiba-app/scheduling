@@ -37,7 +37,24 @@ export function fetchUserSkills() {
 
 export function createMultipleAvailabilities(array) {
   const url = `${BASE_URL}/user_availabilities/multiple`;
-  const body = { "time_block_ids": array }
+  const body = { "user_availability": { "time_block_ids": array } }
+
+  const promise = fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(body)
+  })
+
+  // return { promise };
+}
+
+export function createRecurringAvailabilities(array) {
+  const url = `${BASE_URL}/user_availabilities/multiple`;
+  const body = { "user_availability": {"time_block_ids": array, "recurring": true } }
 
   const promise = fetch(url, {
     method: 'POST',

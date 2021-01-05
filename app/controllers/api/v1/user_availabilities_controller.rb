@@ -1,15 +1,15 @@
 class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
   before_action :activate_user
 
-  def create
-    @user_availability = UserAvailability.new(availability_params)
-    @user_availability.user = current_user
-    if @user_availability.save
-      render json: @user_availability
-    else
-      render_error
-    end
-  end
+  # def create
+  #   @user_availability = UserAvailability.new(availability_params)
+  #   @user_availability.user = current_user
+  #   if @user_availability.save
+  #     render json: @user_availability
+  #   else
+  #     render_error
+  #   end
+  # end
 
   def destroy
     @user_availability = UserAvailability.find(params[:id])
@@ -19,8 +19,10 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
   end
 
   def multiple
-    ids = time_block_ids_params
-    availabilities = ids.map { |id| UserAvailability.create(user: current_user, time_block_id: id) }
+    ids, recurring = multi_availability_params[:time_block_ids], multi_availability_params[:recurring]
+    availabilities = ids.map do |id|
+      UserAvailability.create(user: current_user, time_block_id: id, recurring: recurring)
+    end
     if User.find_available >= User.all.size * 0.8 && !Company.first.reminder_sent?
       ReminderSender.new.call
     end
@@ -33,8 +35,8 @@ class Api::V1::UserAvailabilitiesController < Api::V1::BaseController
     params.require(:user_availability).permit(:time_block_id, :recurring)
   end
 
-  def time_block_ids_params
-    params.require(:time_block_ids)
+  def multi_availability_params
+    params.require(:user_availability).permit(:recurring, :time_block_ids  => [])
   end
 
   def render_error
